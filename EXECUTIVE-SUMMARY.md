@@ -44,13 +44,49 @@ Everything a fully autonomous AI agent needs fits into exactly 10 components:
 
 ---
 
+## What the Market Looks Like
+
+The [Agent Framework Scorecard](components/12-agent-framework-scorecard.md) scores 12 major AI coding tools against all 10 components. Key findings:
+
+**No tool scores above 60%.** The highest-scoring tool (Devin) covers 18 out of 30 possible points. The best open-source tools (Claude Code, OpenHands, Cline) score 14/30. The market is early.
+
+**Three tiers of market maturity:**
+
+| Tier | Components | Market Status |
+|------|-----------|---------------|
+| **Solved** | Terminal + structured tools | Every tool has it. Table stakes. |
+| **Active battleground** | Browser, sandbox, multi-agent | Tools are differentiating here. 50-58% coverage. |
+| **Wide open** | Memory, daemon, credentials, desktop, PTY, audio/video | 6 of 10 components are underserved or absent. 0-25% coverage. |
+
+**The tool that cracks memory and daemon mode first will leapfrog everyone else.** Those two components are force multipliers — they make every other component more valuable.
+
+---
+
+## The Build Order
+
+The [Implementation Roadmap](components/11-implementation-roadmap.md) sequences the 10 components by impact and dependency:
+
+```
+Week 1:      Harden security, add hooks, configure browser
+Weeks 2-4:   Build memory foundation (highest impact per effort)
+Weeks 5-10:  Build stateful daemon (depends on memory)
+Weeks 11-14: Add sandboxes, complete browser
+Weeks 15-22: PTY, desktop, audio (parallel tracks)
+Weeks 23-30: Multi-agent orchestration (build last)
+```
+
+**Critical path: Memory → Daemon → Sandbox → Multi-Agent.** Everything else can be built in parallel.
+
+---
+
 ## Key Insights
 
 - **Capability vs. reliability**: A terminal makes everything possible. Structured tools make common operations reliable. Both are needed.
 - **Accuracy multipliers**: Tools like Read, Edit, and Grep don't add new capabilities — they prevent specific classes of errors that raw Bash would cause.
-- **Memory is the hardest problem**: Tools, browser, and desktop control are solvable engineering. Memory touches how models fundamentally work.
+- **Memory is the hardest problem**: Tools, browser, and desktop control are solvable engineering. Memory touches how models fundamentally work. It's also the foundation the daemon and multi-agent both depend on.
 - **Daemon mode is the biggest UX jump**: Shifting from request-response to always-on is a category change, not an incremental improvement.
 - **Multi-agent is the scaling layer**: One agent with all 9 components can do anything one person can. Multi-agent orchestration is how you go from one person to a team.
+- **The market is early**: 6 of 10 components have less than 25% coverage across all major tools. The next wave of differentiation will come from the underserved components, not from improving terminal or browser.
 
 ---
 
@@ -62,4 +98,4 @@ The real number is **10 components**. Not ten thousand. Ten.
 
 ---
 
-*Full deep-dive: [README.md](README.md) | Component details: [components/](components/)*
+*Full deep-dive: [README.md](README.md) | All documents: [INDEX.md](INDEX.md) | Component details: [components/](components/)*
