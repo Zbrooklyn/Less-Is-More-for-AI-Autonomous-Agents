@@ -6,9 +6,11 @@ A comparative analysis of every major AI agent tool and framework — scored aga
 
 ## Purpose
 
-The AI agent space is crowded and moving fast. Claude Code, Cursor, Copilot, Devin, OpenHands, Windsurf, Aider, Continue, Cline — every tool claims to be the most capable. But without a consistent scoring framework, comparing them is just vibes and marketing.
+The AI agent space is crowded and moving fast. Claude Code, Cursor, Copilot, Devin, OpenHands, Windsurf, Aider, Continue, Cline, Warp, Replit — every tool claims to be the most capable. But without a consistent scoring framework, comparing them is just vibes and marketing.
 
 This document applies the same 10-component lens to every major player. It answers: who's actually closest to a fully autonomous agent? Where is each tool investing? Where are the market gaps that no one is filling? And most importantly — which tool should you use for which type of work?
+
+**Note:** This scorecard focuses on AI coding agents — tools whose primary function is writing, editing, and reasoning about code. Adjacent tools like app builders (Bolt.new, Lovable, v0, Emergent) generate code as output but aren't coding agents in the same sense — they're closer to no-code platforms with AI generation. They're worth watching but don't belong in a head-to-head comparison with tools designed for developers working in codebases.
 
 ## Scoring Key
 
@@ -25,18 +27,18 @@ This document applies the same 10-component lens to every major player. It answe
 
 ## The Master Scorecard
 
-| # | Component | Claude Code | Cursor | Copilot | Devin | OpenHands | Windsurf | Aider | Continue | Cline | Amazon Q / Kiro | Jules | Codex CLI |
-|---|-----------|-------------|--------|---------|-------|-----------|----------|-------|----------|-------|-----------------|-------|-----------|
-| 1 | Terminal + structured tools | **HAVE** | **HAVE** | **HAVE** | **HAVE** | **HAVE** | **HAVE** | **HAVE** | **HAVE** | **HAVE** | **HAVE** | **HAVE** | **HAVE** |
-| 2 | Web browser | PARTIAL | **HAVE** | DON'T HAVE | **HAVE** | **HAVE** | PRIMITIVE | PRIMITIVE | DON'T HAVE | **HAVE** | DON'T HAVE | DON'T HAVE | PRIMITIVE |
-| 3 | Desktop vision + control | DON'T HAVE | PRIMITIVE | DON'T HAVE | PRIMITIVE | PRIMITIVE | PRIMITIVE | DON'T HAVE | DON'T HAVE | PRIMITIVE | DON'T HAVE | PRIMITIVE | PRIMITIVE |
-| 4 | Memory with teeth | PARTIAL | PRIMITIVE | PRIMITIVE | PARTIAL | DON'T HAVE | PARTIAL | DON'T HAVE | PRIMITIVE | PRIMITIVE | PRIMITIVE | PRIMITIVE | PRIMITIVE |
-| 5 | Stateful agent daemon | PRIMITIVE | DON'T HAVE | PARTIAL | PARTIAL | DON'T HAVE | DON'T HAVE | DON'T HAVE | PRIMITIVE | PRIMITIVE | PRIMITIVE | PARTIAL | PRIMITIVE |
-| 6 | Interactive PTY | DON'T HAVE | PRIMITIVE | DON'T HAVE | PRIMITIVE | PRIMITIVE | PRIMITIVE | PRIMITIVE | DON'T HAVE | PRIMITIVE | PRIMITIVE | DON'T HAVE | PARTIAL |
-| 7 | Audio/video I/O | DON'T HAVE | DON'T HAVE | DON'T HAVE | PRIMITIVE | DON'T HAVE | DON'T HAVE | PRIMITIVE | DON'T HAVE | DON'T HAVE | DON'T HAVE | PRIMITIVE | PRIMITIVE |
-| 8 | Sandboxed execution | PARTIAL | PARTIAL | PARTIAL | **HAVE** | **HAVE** | PRIMITIVE | DON'T HAVE | DON'T HAVE | PRIMITIVE | PARTIAL | **HAVE** | **HAVE** |
-| 9 | Credential management | PARTIAL | DON'T HAVE | PARTIAL | PRIMITIVE | PRIMITIVE | DON'T HAVE | DON'T HAVE | PRIMITIVE | PRIMITIVE | PARTIAL | PRIMITIVE | PRIMITIVE |
-| 10 | Multi-agent orchestration | PARTIAL | PARTIAL | PRIMITIVE | PRIMITIVE | PARTIAL | PRIMITIVE | DON'T HAVE | PRIMITIVE | PARTIAL | PARTIAL | PRIMITIVE | PARTIAL |
+| # | Component | Claude Code | Cursor | Copilot | Devin | OpenHands | Windsurf | Aider | Continue | Cline | Amazon Q / Kiro | Jules | Codex CLI | Replit Agent | Warp |
+|---|-----------|-------------|--------|---------|-------|-----------|----------|-------|----------|-------|-----------------|-------|-----------|--------------|------|
+| 1 | Terminal + structured tools | **HAVE** | **HAVE** | **HAVE** | **HAVE** | **HAVE** | **HAVE** | **HAVE** | **HAVE** | **HAVE** | **HAVE** | **HAVE** | **HAVE** | **HAVE** | **HAVE** |
+| 2 | Web browser | PARTIAL | **HAVE** | DON'T HAVE | **HAVE** | **HAVE** | PRIMITIVE | PRIMITIVE | DON'T HAVE | **HAVE** | DON'T HAVE | DON'T HAVE | PRIMITIVE | PARTIAL | PARTIAL |
+| 3 | Desktop vision + control | DON'T HAVE | PRIMITIVE | DON'T HAVE | PRIMITIVE | PRIMITIVE | PRIMITIVE | DON'T HAVE | DON'T HAVE | PRIMITIVE | DON'T HAVE | PRIMITIVE | PRIMITIVE | DON'T HAVE | PRIMITIVE |
+| 4 | Memory with teeth | PARTIAL | PRIMITIVE | PRIMITIVE | PARTIAL | DON'T HAVE | PARTIAL | DON'T HAVE | PRIMITIVE | PRIMITIVE | PRIMITIVE | PRIMITIVE | PRIMITIVE | PRIMITIVE | PRIMITIVE |
+| 5 | Stateful agent daemon | PRIMITIVE | DON'T HAVE | PARTIAL | PARTIAL | DON'T HAVE | DON'T HAVE | DON'T HAVE | PRIMITIVE | PRIMITIVE | PRIMITIVE | PARTIAL | PRIMITIVE | PARTIAL | PARTIAL |
+| 6 | Interactive PTY | DON'T HAVE | PRIMITIVE | DON'T HAVE | PRIMITIVE | PRIMITIVE | PRIMITIVE | PRIMITIVE | DON'T HAVE | PRIMITIVE | PRIMITIVE | DON'T HAVE | PARTIAL | PRIMITIVE | **HAVE** |
+| 7 | Audio/video I/O | DON'T HAVE | DON'T HAVE | DON'T HAVE | PRIMITIVE | DON'T HAVE | DON'T HAVE | PRIMITIVE | DON'T HAVE | DON'T HAVE | DON'T HAVE | PRIMITIVE | PRIMITIVE | PRIMITIVE | PRIMITIVE |
+| 8 | Sandboxed execution | PARTIAL | PARTIAL | PARTIAL | **HAVE** | **HAVE** | PRIMITIVE | DON'T HAVE | DON'T HAVE | PRIMITIVE | PARTIAL | **HAVE** | **HAVE** | **HAVE** | PARTIAL |
+| 9 | Credential management | PARTIAL | DON'T HAVE | PARTIAL | PRIMITIVE | PRIMITIVE | DON'T HAVE | DON'T HAVE | PRIMITIVE | PRIMITIVE | PARTIAL | PRIMITIVE | PRIMITIVE | PARTIAL | PARTIAL |
+| 10 | Multi-agent orchestration | PARTIAL | PARTIAL | PRIMITIVE | PRIMITIVE | PARTIAL | PRIMITIVE | DON'T HAVE | PRIMITIVE | PARTIAL | PARTIAL | PRIMITIVE | PARTIAL | PARTIAL | PARTIAL |
 
 ---
 
@@ -44,18 +46,20 @@ This document applies the same 10-component lens to every major player. It answe
 
 | Rank | Tool | Score | Profile |
 |------|------|-------|---------|
-| 1 | **Devin** | 18/30 | Most complete autonomous agent — browser, sandbox, memory, event-driven |
-| 2 | **Codex CLI** | 16/30 | Strong sandbox, multi-agent, and interactive PTY — open source |
-| 3 | **Claude Code** | 14/30 | Best terminal tools, strong memory and multi-agent, MCP ecosystem |
-| 3 | **OpenHands** | 14/30 | Best open-source sandbox and browser, strong multi-agent architecture |
-| 3 | **Cline** | 14/30 | Built-in browser, multi-agent via CLI 2.0, community-driven |
-| 6 | **Cursor** | 13/30 | Best IDE experience, built-in browser, 8-agent parallelism |
-| 6 | **Jules** | 13/30 | Async cloud agent, ephemeral VM sandbox, Google ecosystem |
-| 8 | **Amazon Q / Kiro** | 12/30 | AWS-native, sandbox execution, CAO multi-agent framework |
-| 9 | **GitHub Copilot** | 11/30 | Event-driven via GitHub, secret scanning, ephemeral environments |
-| 10 | **Windsurf** | 10/30 | Auto-learning memories, new multi-agent, catching up fast |
-| 11 | **Continue** | 7/30 | CI-enforceable rules are unique, but narrow scope |
-| 12 | **Aider** | 6/30 | Best pure pair programmer, but minimal beyond file editing and git |
+| 1 | **Warp** | 19/30 | Terminal-native orchestrator with the only real interactive PTY — unique approach |
+| 2 | **Devin** | 18/30 | Most complete autonomous agent — browser, sandbox, memory, event-driven |
+| 3 | **Replit Agent** | 17/30 | Full platform play — hosting, database, auth, deployment, snapshot rollback |
+| 4 | **Codex CLI** | 16/30 | Strong sandbox, multi-agent, and interactive PTY — open source |
+| 5 | **Claude Code** | 14/30 | Best terminal tools, strong memory and multi-agent, MCP ecosystem |
+| 5 | **OpenHands** | 14/30 | Best open-source sandbox and browser, strong multi-agent architecture |
+| 5 | **Cline** | 14/30 | Built-in browser, multi-agent via CLI 2.0, community-driven |
+| 8 | **Cursor** | 13/30 | Best IDE experience, built-in browser, 8-agent parallelism |
+| 8 | **Jules** | 13/30 | Async cloud agent, ephemeral VM sandbox, Google ecosystem |
+| 10 | **Amazon Q / Kiro** | 12/30 | AWS-native, sandbox execution, CAO multi-agent framework |
+| 11 | **GitHub Copilot** | 11/30 | Event-driven via GitHub, secret scanning, ephemeral environments |
+| 12 | **Windsurf** | 10/30 | Auto-learning memories, new multi-agent, catching up fast |
+| 13 | **Continue** | 7/30 | CI-enforceable rules are unique, but narrow scope |
+| 14 | **Aider** | 6/30 | Best pure pair programmer, but minimal beyond file editing and git |
 
 ---
 
@@ -205,33 +209,57 @@ This document applies the same 10-component lens to every major player. It answe
 
 ---
 
+### Replit Agent (Replit) — 17/30
+
+**What it does best:** The only tool that's also a full platform. Replit Agent doesn't just write code — it provisions databases, sets up hosting, configures auth, manages environment secrets, and deploys to production, all within a single integrated environment. The Nix-based container sandbox provides reproducible, isolated workspaces with snapshot and rollback via Replit's checkpoint system. The agent runs as a persistent workspace service — closer to daemon behavior than most tools. Built-in Webview renders the running app directly in the IDE for real-time feedback. Multi-agent via Replit Teams enables collaborative agent workflows.
+
+**Where it falls short:** No desktop vision or control. Memory is limited to `.replit` config and conversation history — no semantic retrieval, no learned patterns, no enforcement. Browser is Webview-only (views the app being built, doesn't browse the open web). Interactive PTY is basic terminal access, not true debugger/REPL interaction. Audio/video limited to media file handling, not real-time I/O. The platform lock-in is real — the agent's power comes from Replit's infrastructure, which means leaving Replit means losing most of what makes it strong.
+
+**Best for:** Prototyping and shipping full-stack applications fast. Non-infrastructure-minded developers who want the agent to handle everything from code to deployment. Hackathons and MVPs where "works on Replit" is good enough for v1.
+
+**Unique strength:** Platform integration. No other coding agent can go from "build me a todo app" to a live, deployed application with a database, auth, and custom domain in a single conversation. The agent controls the full stack because the platform is the full stack.
+
+---
+
+### Warp (Warp) — 19/30
+
+**What it does best:** The highest-scoring tool, and for a distinctive reason: Warp is the only tool with a genuine interactive PTY. It's built as an AI-native terminal, which means it doesn't shell out to run commands — it *is* the shell. The agent can attach to running processes (psql, vim, gdb, Python REPLs, SSH sessions), read their output, send keystrokes, and interact with them conversationally. This is the component that every other tool scores DON'T HAVE or PRIMITIVE on, and Warp scores HAVE. Beyond PTY, Warp's Agent Mode orchestrates multi-step terminal workflows with automatic error correction and retry logic. Warp Drive provides shared, parameterized workflow templates across teams. Background execution with Warp Backgrounds lets commands run persistently with notification on completion — a daemon-adjacent capability.
+
+**Where it falls short:** Not a code editor. Warp is a terminal first — it doesn't have structured file editing tools (Read, Edit, Grep) like Claude Code, or an IDE like Cursor. Browser capability is limited to CLI-based web requests and MCP integrations, not a rendered browser. Memory is Warp Drive workflows and Rules, not semantic retrieval. Desktop vision is limited to terminal content. Sandbox is process-level isolation within the terminal, not container or VM isolation. It occupies a genuinely different niche — the terminal layer rather than the editor layer.
+
+**Best for:** Developers who live in the terminal and want AI woven into that workflow. DevOps, infrastructure, and backend work where the terminal *is* the primary interface. Teams that need shareable, parameterized workflows (Warp Drive). Anyone who needs interactive PTY — debugger stepping, database shells, SSH sessions — where no other agent can follow.
+
+**Unique strength:** Interactive PTY. Full stop. Warp is the only tool on this scorecard that scores HAVE on interactive PTY. Every other tool treats the terminal as a command-response pipe. Warp treats it as a fully interactive medium where the agent can participate in ongoing conversations with running processes. This single capability is why it leads the scorecard despite lacking features that other tools have.
+
+---
+
 ## Market Gap Analysis
 
 ### What every tool has
 
-**Terminal + structured tools.** All 12 tools score HAVE. This is table stakes. The foundation is completely solved.
+**Terminal + structured tools.** All 14 tools score HAVE. This is table stakes. The foundation is completely solved.
 
 ### What most tools have
 
-**Web browser (7 of 12 have it at PARTIAL or above).** Cursor, Devin, OpenHands, and Cline have built-in browsers. Claude Code and Windsurf have it via MCP add-ons. Codex has web search. But 5 tools (Copilot, Aider, Continue, Amazon Q, Jules) have no browser capability at all.
+**Web browser (9 of 14 have it at PARTIAL or above).** Cursor, Devin, OpenHands, and Cline have built-in browsers. Claude Code, Windsurf, Replit, and Warp have it via built-in Webview or MCP add-ons. Codex has web search. But 5 tools (Copilot, Aider, Continue, Amazon Q, Jules) have no browser capability at all.
 
-**Sandboxed execution (7 of 12 have it at PARTIAL or above).** Devin, OpenHands, Jules, and Codex CLI have strong sandbox. Claude Code, Cursor, Copilot, and Amazon Q have partial sandbox. The remaining 4 have primitive or no sandbox.
+**Sandboxed execution (9 of 14 have it at PARTIAL or above).** Devin, OpenHands, Jules, Codex CLI, and Replit have strong sandbox. Claude Code, Cursor, Copilot, Amazon Q, and Warp have partial sandbox. The remaining 4 have primitive or no sandbox.
 
 ### What few tools have
 
-**Memory with teeth (3 of 12 at PARTIAL or above).** Only Claude Code, Devin, and Windsurf reach PARTIAL. Everyone else is PRIMITIVE or DON'T HAVE. Memory is the most underserved high-impact component.
+**Memory with teeth (3 of 14 at PARTIAL or above).** Only Claude Code, Devin, and Windsurf reach PARTIAL. Everyone else is PRIMITIVE or DON'T HAVE. Memory is the most underserved high-impact component.
 
-**Stateful agent daemon (3 of 12 at PARTIAL or above).** Only Copilot, Devin, and Jules reach PARTIAL. No tool has a full daemon. This is the biggest capability gap in the market.
+**Stateful agent daemon (5 of 14 at PARTIAL or above).** Copilot, Devin, Jules, Replit, and Warp reach PARTIAL. No tool has a full daemon. This is the biggest capability gap in the market.
 
-**Credential management (3 of 12 at PARTIAL or above).** Only Claude Code, Copilot, and Amazon Q reach PARTIAL. Most tools rely on environment variables. Security is an afterthought.
+**Credential management (5 of 14 at PARTIAL or above).** Claude Code, Copilot, Amazon Q, Replit, and Warp reach PARTIAL. Most tools rely on environment variables. Security is an afterthought.
 
-### What no tool has
+### What almost no tool has
 
 **Desktop vision + control.** Every score is PRIMITIVE or DON'T HAVE. Despite Anthropic's Computer Use existing as a product, no coding agent integrates it natively. This remains a research capability, not a product feature.
 
-**Interactive PTY.** Only Codex CLI reaches PARTIAL (via js_repl). Every other tool is PRIMITIVE or DON'T HAVE. No coding agent can step through a debugger, use a REPL interactively, or navigate an SSH session.
+**Interactive PTY.** Warp is the only tool that scores HAVE — it's a terminal, so interactive PTY is its native medium. Codex CLI reaches PARTIAL (via js_repl). Every other tool is PRIMITIVE or DON'T HAVE. Outside of Warp, no coding agent can step through a debugger, use a REPL interactively, or navigate an SSH session.
 
-**Audio/video I/O.** The weakest dimension across the entire market. Aider and Codex have voice input. Jules has audio summaries. Devin can ingest video files. No tool has real-time audio/video I/O.
+**Audio/video I/O.** The weakest dimension across the entire market. Aider and Codex have voice input. Jules has audio summaries. Devin can ingest video files. Replit and Warp have basic media handling. No tool has real-time audio/video I/O.
 
 ---
 
@@ -243,11 +271,11 @@ This document applies the same 10-component lens to every major player. It answe
 | Web browser | **Devin** | Built-in Chrome in a full cloud sandbox. Autonomous web navigation, API doc reading, Figma browsing. Cursor is close with built-in Chromium. |
 | Desktop vision + control | **No leader** | No tool scores above PRIMITIVE. The entire market is missing this. |
 | Memory with teeth | **Devin** | Vectorized codebase snapshots, full replay timeline, Devin Wiki. Claude Code is close with CLAUDE.md + hooks. Windsurf's auto-learning is distinctive. |
-| Stateful agent daemon | **Devin** | Closest to always-on — event-driven triggers, persistent cloud service. Copilot is close with GitHub event integration. Jules with async cloud tasks. |
-| Interactive PTY | **Codex CLI** | js_repl provides interactive REPL. No other tool has native PTY interaction. This is a wide-open gap. |
+| Stateful agent daemon | **Devin** | Closest to always-on — event-driven triggers, persistent cloud service. Copilot is close with GitHub event integration. Jules with async cloud tasks. Replit's persistent workspace is notable. |
+| Interactive PTY | **Warp** | The only tool that scores HAVE. Warp *is* the terminal — it attaches to psql, vim, gdb, Python REPLs, and SSH natively. Codex CLI's js_repl is a distant second. |
 | Audio/video I/O | **No leader** | No tool scores above PRIMITIVE. Voice input (Aider, Codex) and video file ingestion (Devin) are the closest, but none are integrated. |
-| Sandboxed execution | **Codex CLI** | OS-enforced kernel-level isolation (Landlock, seatbelt). Devin and Jules have strong cloud sandbox. OpenHands has the most scalable Docker sandbox. |
-| Credential management | **GitHub Copilot** | Built-in secret scanning, short-lived tokens in ephemeral environments. Amazon Q is strong for AWS-native. Claude Code's scoped proxy is solid. |
+| Sandboxed execution | **Codex CLI / Replit** | Codex has OS-enforced kernel-level isolation (Landlock, seatbelt). Replit has Nix-based reproducible containers with snapshot rollback. Different approaches, both strong. Devin, Jules, and OpenHands also score HAVE. |
+| Credential management | **GitHub Copilot** | Built-in secret scanning, short-lived tokens in ephemeral environments. Amazon Q is strong for AWS-native. Replit handles secrets within its platform. Claude Code's scoped proxy is solid. |
 | Multi-agent orchestration | **Cursor** | 8 parallel agents with Mission Control grid view. Codex CLI is close with first-party multi-agent. Claude Code has the richest ecosystem (native + community). |
 
 ---
@@ -264,9 +292,13 @@ This document applies the same 10-component lens to every major player. It answe
 
 **Cline.** CLI 2.0 brought terminal-native operation, parallel agents, subagent delegation, and process isolation in one update. The Remote Browser is unique among open-source tools. The community is one of the most active.
 
+**Warp.** Rapid evolution from "smart terminal" to full agent platform. Agent Mode, Warp Drive workflows, background execution, and MCP integration have all shipped recently. The interactive PTY advantage is structural — it's not a feature they added, it's a consequence of being a terminal. If they add structured file editing tools and deeper memory, they'll be hard to displace.
+
 ### Steady
 
-**Devin.** Already the highest-scoring tool. Adding features (Wiki, Search) but the core architecture hasn't changed dramatically. The risk is that open-source tools (OpenHands, Claude Code, Codex) catch up by offering similar capabilities with more transparency and customization.
+**Devin.** Was the highest-scoring tool until Warp. Adding features (Wiki, Search) but the core architecture hasn't changed dramatically. The risk is that open-source tools (OpenHands, Claude Code, Codex) catch up by offering similar capabilities with more transparency and customization.
+
+**Replit Agent.** Strong platform integration but increasingly competing with general-purpose agents that can deploy anywhere. The platform lock-in is both the strength and the constraint. Replit's bet is that developers will choose convenience over flexibility — and for prototyping and MVPs, they're often right.
 
 **GitHub Copilot.** Methodical expansion. Agentic Memory, CLI GA, Agent HQ. Strong integration story with GitHub ecosystem. Not moving as fast as Claude Code or Cursor on raw agent capabilities, but the event-driven model is unique.
 
@@ -298,9 +330,13 @@ There's no single winner. The right tool depends on what you're doing.
 
 **If you want CI-integrated rule enforcement:** Continue. The only tool where AI coding standards are version-controlled CI checks.
 
+**If you live in the terminal and want AI that actually understands terminal workflows:** Warp. The only tool with real interactive PTY. If your work involves debuggers, database shells, REPLs, or SSH, nothing else comes close.
+
+**If you want to go from idea to deployed app in one conversation:** Replit Agent. The full platform handles code, hosting, database, auth, and deployment. Best for prototyping and MVPs. Be aware of platform lock-in.
+
 ### The Uncomfortable Truth
 
-No tool scores above 18/30. The best tool in the market covers 60% of what a fully autonomous agent needs. The remaining 40% — desktop control, interactive PTY, audio/video, proper memory, daemon mode, credential security — is either primitive or nonexistent across the entire industry.
+No tool scores above 19/30. The highest-scoring tool in the market (Warp) covers 63% of what a fully autonomous agent needs — and it gets there partly by being a fundamentally different kind of tool (a terminal, not an editor). The remaining 37% — desktop control, audio/video, proper memory, daemon mode — is either primitive or nonexistent across the entire industry.
 
 The "Less Is More" framework identifies 10 components. The market has built 1 completely (terminal), is converging on 3 more (browser, sandbox, multi-agent), and has barely started on the remaining 6.
 
@@ -314,23 +350,23 @@ How many tools cover each component at PARTIAL or above:
 
 | Component | Tools at PARTIAL+ | % of Market | Assessment |
 |-----------|------------------|-------------|------------|
-| Terminal + structured tools | 12/12 | 100% | **Solved** |
-| Web browser | 7/12 | 58% | Converging |
-| Sandboxed execution | 7/12 | 58% | Converging |
-| Multi-agent orchestration | 6/12 | 50% | Active investment |
-| Memory with teeth | 3/12 | 25% | **Underserved** |
-| Stateful agent daemon | 3/12 | 25% | **Underserved** |
-| Credential management | 3/12 | 25% | **Underserved** |
-| Desktop vision + control | 0/12 | 0% | **Nobody building** |
-| Interactive PTY | 1/12 | 8% | **Nearly nobody building** |
-| Audio/video I/O | 0/12 | 0% | **Nobody building** |
+| Terminal + structured tools | 14/14 | 100% | **Solved** |
+| Web browser | 9/14 | 64% | Converging |
+| Sandboxed execution | 9/14 | 64% | Converging |
+| Multi-agent orchestration | 8/14 | 57% | Active investment |
+| Stateful agent daemon | 5/14 | 36% | **Underserved** |
+| Credential management | 5/14 | 36% | **Underserved** |
+| Memory with teeth | 3/14 | 21% | **Underserved** |
+| Interactive PTY | 2/14 | 14% | **Nearly nobody building** |
+| Desktop vision + control | 0/14 | 0% | **Nobody building** |
+| Audio/video I/O | 0/14 | 0% | **Nobody building** |
 
 ### The Three Tiers of Market Maturity
 
 **Tier 1 — Solved:** Terminal + structured tools. Done. Everyone has it.
 
-**Tier 2 — Active competition:** Browser, sandbox, multi-agent. These are the current battleground. Tools are differentiating here.
+**Tier 2 — Active competition:** Browser, sandbox, multi-agent. These are the current battleground. Tools are differentiating here. Daemon and credentials are moving from Tier 3 into this zone with Replit and Warp pushing the numbers up.
 
-**Tier 3 — Wide open:** Memory, daemon, credentials, desktop, PTY, audio/video. Six out of ten components are either underserved or completely absent from the market. This is where the next wave of differentiation will come from.
+**Tier 3 — Wide open:** Memory, desktop, PTY, audio/video. Four out of ten components are either deeply underserved or completely absent from the market. This is where the next wave of differentiation will come from. Warp's PTY HAVE is the exception that proves the rule — it took building an entirely new kind of terminal to crack one of these components.
 
-The tool that figures out memory with teeth and daemon mode first will leapfrog everyone else. Those two components are force multipliers — they make every other component more valuable. The market knows this (Devin and Claude Code are both investing here), but nobody has cracked it yet.
+The tool that figures out memory with teeth first will leapfrog everyone else. Memory is the force multiplier — it makes every other component more valuable. The market knows this (Devin and Claude Code are both investing here), but nobody has cracked it yet.
