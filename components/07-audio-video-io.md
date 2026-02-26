@@ -18,28 +18,98 @@ Can read static image files. Can process text transcripts of audio. Claude API s
 
 The hardest problem isn't the technology — it's **real-time constraints**. In text chat, a 2-second response time is fine. In voice conversation, it's awkward. In a meeting, it's unusable. Audio/video I/O requires either fundamentally faster inference or predictive buffering strategies that current LLM architectures aren't optimized for. This is why text-based agents are years ahead of voice-based agents despite the underlying models being the same.
 
+---
+
+## What Exists Today
+
+**Nothing integrated.** The agent has zero access to audio or video as part of the agent loop. It can't hear. It can't see through the camera. It can't speak out loud. It can't join a meeting. It can't listen to an audio file and tell you what's in it. It can't watch a video and summarize it.
+
+The closest things that exist:
+- Can **read image files** — screenshots, photos, diagrams. But only static, pre-captured images. Can't see live.
+- Can **process text transcripts** of audio — but someone else has to transcribe it first.
+- Can **generate text** that a text-to-speech system reads — but doesn't control the voice, the timing, or the delivery.
+
+## Why This Matters
+
+Audio/video isn't niche. It's how humans spend a huge portion of their computer time:
+
+| Task | Why It Needs Audio/Video |
+|------|-------------------------|
+| Meeting participation | Listen, understand context, contribute, take notes — in real-time |
+| Voice commands | "Hey agent, check why the build failed" — hands-free interaction |
+| Audio content processing | Podcasts, voice memos, recorded meetings — massive untapped data |
+| Video analysis | Security footage, screen recordings, tutorials — all locked away |
+| Accessibility testing | "Does this screen reader flow work?" — can't test what you can't hear |
+| Music/audio production | Mixing, mastering, sound design — entire creative fields |
+| Phone/voice calls | Customer support, sales calls, interviews — can't participate |
+| Live monitoring | Audio alerts, alarm sounds, voice notifications from other systems |
+
 ## The Four Channels
 
 ### Audio Input (the ears)
-- Microphone capture — real-time audio stream from system mic
-- Audio file ingestion — .mp3, .wav, .flac, .ogg processing
-- Real-time transcription — speech-to-text on live audio
-- Audio analysis — tone, emotion, speaker identification, background noise
+
+**1. Microphone capture** — access the system microphone, receive audio stream in real-time
+
+**2. Audio file ingestion** — read .mp3, .wav, .flac, .ogg files and understand their contents (speech, music, sound effects, silence patterns)
+
+**3. Real-time transcription** — speech-to-text on live audio, not just pre-recorded files
+
+**4. Audio analysis** — not just "what words were said" but tone, emotion, background noise, speaker identification, music detection
 
 ### Audio Output (the voice)
-- Speech synthesis — text to spoken audio with voice/speed/tone control
-- Audio playback — notifications, alerts, audio feedback through speakers
-- Real-time conversation — natural turn-taking, interruption handling
+
+**1. Speech synthesis** — convert text responses to spoken audio, with control over voice, speed, tone, emphasis
+
+**2. Audio playback** — play sounds through system speakers — notifications, alerts, audio feedback
+
+**3. Real-time conversation** — speak and listen simultaneously, with natural turn-taking, interruption handling, back-channels ("uh-huh", "right")
 
 ### Video Input (the eyes)
-- Camera capture — live webcam feed
-- Screen recording analysis — understand sequences of actions, not just static screenshots
-- Video file processing — .mp4, .mov, .webm content understanding
-- Live video streams — real-time monitoring of feeds
+
+**1. Camera capture** — access webcam, see what's in front of the computer
+
+**2. Screen recording analysis** — watch a screen recording and understand what happened (this overlaps with desktop vision + control, but temporal — understanding sequences of actions, not just static screenshots)
+
+**3. Video file processing** — watch .mp4, .mov, .webm and understand content, extract key frames, summarize, search for specific moments
+
+**4. Live video streams** — monitor a video feed in real-time (security cameras, live streams, video calls)
 
 ### Video Output (the face)
-- Screen sharing — show the user what the agent is doing visually
-- Avatar/presence — visual representation in video calls
+
+**1. Screen sharing** — show the user what the agent is doing in real-time (this somewhat exists via terminal output, but not visually)
+
+**2. Avatar/presence** — a visual representation in video calls (synthetic video, avatar, screen share with annotation)
+
+## The Hard Problems
+
+**1. Bandwidth and processing.** Audio and video are massive data streams compared to text. A minute of conversation is a few KB of text but several MB of audio and hundreds of MB of video. Processing this in real-time requires different infrastructure than text-based AI.
+
+**2. Real-time constraints.** In a conversation, a 2-second delay is awkward. A 5-second delay is unusable. Current LLM inference times are acceptable for text chat but too slow for natural voice conversation. This requires either faster inference or predictive buffering.
+
+**3. Multimodal integration.** The AI needs to process text, audio, and video simultaneously and reason across all of them. "The user sounds frustrated AND the code they're showing me has a bug" — connecting audio emotion to visual code content requires genuine multimodal understanding, not just parallel processing.
+
+**4. Privacy.** A microphone that's always listening and a camera that's always watching raise massive privacy concerns. The daemon mode problem of authority boundaries applies here tenfold. When does the AI listen? What does it retain? Who has access to recordings? This isn't just a technical problem — it's a trust problem.
+
+**5. Hardware variability.** Every machine has different audio devices, cameras, drivers, sample rates, resolutions. Building a reliable abstraction layer across all of this is the kind of tedious systems engineering that makes developers quit.
+
+## What Exists Today (primitive versions)
+
+- **Whisper / speech-to-text APIs** — transcribe audio to text, but offline / batch only, not integrated into the agent loop
+- **ElevenLabs / TTS APIs** — text to speech, but one-directional and not real-time conversational
+- **Claude's vision capability** — can analyze static images, but not video streams or real-time camera
+- **GPT-4o's voice mode** — the closest thing to real-time audio I/O integrated with an LLM, but it's a product, not an agent capability you can build with
+- **WebRTC** — the protocol for real-time audio/video, widely deployed, but no AI agent framework integrates with it natively
+
+## The Difference
+
+| | Current State | Full Audio/Video I/O |
+|---|--------------|---------------------|
+| Hearing | Read text transcripts after the fact | Listen live, understand speech, tone, and context |
+| Speaking | Generate text someone else might read aloud | Speak directly, with natural voice and timing |
+| Seeing (live) | Static screenshots on demand | Live camera and screen feeds |
+| Seeing (recorded) | Read about what happened | Watch video and understand what happened |
+| Meetings | Read the notes afterward | Attend, participate, contribute in real-time |
+| Response time | Seconds (acceptable for text) | Milliseconds (required for voice) |
 
 ## What It Covers
 
