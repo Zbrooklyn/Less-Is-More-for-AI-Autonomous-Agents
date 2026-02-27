@@ -12,6 +12,65 @@ The roadmap identifies the highest-leverage components — the ones that unlock 
 
 ---
 
+## Platform Architecture
+
+### Design Principle
+
+**Desktop is the primary target. Everything else is a parallel option, not a constraint.**
+
+The roadmap is designed for desktop (Windows/macOS/Linux) where the full 10-component stack can run without compromise. But the two core pieces you build from scratch — memory and daemon — should be platform-agnostic by design, so they can also run on constrained surfaces without redesigning anything.
+
+### Surfaces
+
+| Surface | Role | What Runs There |
+|---------|------|-----------------|
+| **Desktop** (primary) | Full agent stack — all 10 components, no compromises | Memory, daemon, all MCP servers, local + cloud models, desktop vision, full browser, sandbox |
+| **Raspberry Pi** (parallel option) | Lightweight always-on hub — headless daemon, SSH-based | Memory, daemon, PTY, audio I/O, local triage model, cloud API calls |
+| **Android** (parallel option) | Mobile presence — notifications, voice, on-the-go access | Memory, daemon, audio I/O, credentials, cloud API calls via Termux |
+
+### Reasoning Backends
+
+The daemon doesn't care which model it calls. These are interchangeable:
+
+| Backend | Access Method | Strength |
+|---------|--------------|----------|
+| **Claude** | Claude Code CLI or API | Best terminal tools, strongest reasoning |
+| **Codex** | Codex CLI or API | Best sandbox, OS-level isolation |
+| **Gemini** | Gemini CLI or API | Longest context window, multimodal |
+| **Local model** | Ollama / llama.cpp | Free, offline, triage and simple tasks |
+
+The daemon's triage layer picks the right backend per task — Opus for architecture decisions, Haiku for formatting, local Phi for triage, Gemini for long-context research. Cost, availability, and task complexity drive the choice.
+
+### What This Means for the Roadmap
+
+The build order and dependency graph are unchanged. Desktop gets everything. The parallel options get whatever subset runs on their hardware:
+
+| Component | Desktop | Pi | Android |
+|-----------|---------|-----|---------|
+| Terminal + structured tools | Full (via CLI agents) | Full (via CLI agents) | Partial (via Termux) |
+| Web browser | Full | Headless only | Delegated to cloud |
+| Desktop vision + control | Full | N/A (headless) | Accessibility APIs |
+| Memory with teeth | Full | Full (same SQLite + sqlite-vec) | Full (same SQLite) |
+| Stateful agent daemon | Full | Full (same code, lighter load) | Full (adapted for Android lifecycle) |
+| Interactive PTY | Full | Full (natural fit — SSH hub) | Partial (Termux) |
+| Audio/video I/O | Full | USB mic/speaker | Native (best audio surface) |
+| Sandboxed execution | Full (E2B, Docker, local) | Lightweight (chroot, process isolation) | Delegated to cloud |
+| Credential management | Full | Full (same keyring) | Full (Android Keystore) |
+| Multi-agent orchestration | Full (local + cloud agents) | Supervisor only (workers run on cloud) | Supervisor only |
+
+### Design Constraints (apply to Phase 1 and 2 only)
+
+To keep the parallel options viable without slowing down desktop development:
+
+1. **Memory store: SQLite + sqlite-vec.** Runs on every surface. No Postgres dependency.
+2. **Daemon language: Python.** Runs on desktop, Pi (native), and Android (Termux). Rich ML ecosystem for local model integration.
+3. **No heavy dependencies in core.** Memory and daemon must work without Docker, GPU, or cloud connectivity. Plugins (MCP servers) can have heavier requirements.
+4. **Cloud API calls, not CLI wrappers.** On Pi/Android, you call Claude/Codex/Gemini via API, not by spawning their CLI tools. On desktop, either works.
+
+These constraints only apply to the memory system and daemon loop. Everything else (browser, sandbox, desktop vision, multi-agent) is built for desktop first with no compromises.
+
+---
+
 ## Dependency Graph
 
 Not all 10 components are independent. Some require others to exist first. Some enhance others but don't strictly require them.
@@ -206,6 +265,54 @@ Components that take the longest and should be started early if they're on your 
 | **Multi-Agent Orchestration** | Most complex build. 6 sub-components, hardest coordination problems. Depends on memory and benefits from everything else. Start last but expect it to take longest. |
 | **Stateful Agent Daemon** | 5 sub-components that must work together reliably. Event handling, state management, authority enforcement, and audit logging all need to be solid before trusting it with autonomous action. |
 | **Audio/Video I/O** | Real-time constraints, hardware variability, bandwidth challenges. Not technically dependent on other components but requires different infrastructure than everything else (media processing vs. text processing). |
+
+---
+
+## Build vs. Integrate — Component Ecosystem Shortcuts
+
+The original roadmap assumes building each component from scratch. The [Agent Framework Scorecard](12-agent-framework-scorecard.md) revealed a component ecosystem of specialist tools that already have production-quality implementations of individual components. Integrating these instead of building from zero can compress the timeline significantly — but not every component has a viable shortcut.
+
+### Where integration beats building
+
+| Phase | Component | Build Time | Integrate With | Compressed Time | Why It Works |
+|-------|-----------|-----------|----------------|-----------------|--------------|
+| Phase 0 | Credential Management (9) | 1 day | **Composio** (managed OAuth, 250+ apps) | 2 hours | Composio's entire product is credential management. Handles auth handshakes on their infrastructure, returns reference IDs. Solves the problem you'd spend days building and months maintaining. |
+| Phase 0+3 | Web Browser (2) | 1 week | **Browser-Use** (89.1% WebVoyager) | 1-2 days | Highest benchmark score of any browser automation tool. Open source, Fortune 500 adoption. Plugs into any agent via API. |
+| Phase 3 | Sandboxed Execution (8) | 3 weeks | **E2B** (Firecracker microVMs, 150ms startup) | 3-5 days | Industry standard. Used by Letta, smolagents, and dozens of frameworks. No cold starts, 24-hour sessions, API-driven. Building your own sandbox orchestrator from scratch when E2B exists is reinventing the wheel. |
+| Phase 4 | Interactive PTY (6) | 3 weeks | **PiloTY** (MCP server) | 2-3 days | Solves the PTY problem as a plug-in. Persistent REPL, debugger, and SSH sessions that survive across tool calls. Small project but purpose-built. |
+| Phase 4 | Audio/Video I/O (7) | 2 weeks | **LiveKit Agents** (WebRTC, VAD, turn-taking) | 1 week | Production-grade real-time voice and video. Voice activity detection and turn-taking built in. The infrastructure layer you'd eventually need to build anyway. |
+
+### Where you must build
+
+| Phase | Component | Why Integration Doesn't Work |
+|-------|-----------|------------------------------|
+| Phase 1 | Memory With Teeth (4) | **No shortcut.** Mem0 (41K stars) and memU are memory layers, but neither implements the full 6-level system — automatic injection, enforcement hooks, semantic retrieval, automatic capture, compression-proof persistence, and behavioral verification. Letta's memory (the only HAVE) is tightly coupled to their daemon architecture and model-dependent. The memory system is the most custom piece of the entire stack because it touches how the agent fundamentally works, not just what it can access. |
+| Phase 2 | Stateful Agent Daemon (5) | **Mostly build.** n8n has strong event-driven workflows and a credential vault, and could serve as infrastructure for the event bus and triage layer. But the authority tier system, persistent state store, and audit log are specific to your agent's trust model. You're building the decision-making layer on top of commodity event infrastructure. |
+| Phase 5 | Multi-Agent Orchestration (10) | **Mostly build.** AutoGen (40K stars) and CrewAI (25K stars) provide orchestration patterns, but they're frameworks — they give you the scaffolding, not the supervisor logic, coherence checking, or conflict resolution specific to your agent team. LangGraph handles the graph execution but not the team coordination. Use them as foundations, but the hard work is still custom. |
+| Phase 4 | Desktop Vision + Control (3) | **Partially build.** UI-TARS (ByteDance, 12K stars) provides open-weight models for GUI understanding. Agent S3 reached 69.9% on OSWorld (human baseline: 72%). But integrating vision models with your agent's action loop, handling multi-monitor DPI, and building reliable click-target identification is still substantial work. Use existing models, build the integration. |
+
+### Compressed Timeline
+
+With integration where viable and building where necessary:
+
+```
+Week 1:      Phase 0 — Composio for credentials, Browser-Use for web, enforcement hooks
+Weeks 2-4:   Phase 1 — Build memory foundation (no shortcut — this is the core)
+Weeks 5-10:  Phase 2 — Build daemon (n8n for event infrastructure, custom authority/state/audit)
+Weeks 11-13: Phase 3 — E2B for sandbox, Browser-Use deepening
+Weeks 14-18: Phase 4 — PiloTY for PTY, LiveKit for audio, desktop vision (parallel tracks)
+Weeks 19-25: Phase 5 — Multi-agent orchestration (AutoGen/CrewAI as foundation, custom coordination)
+```
+
+**Original timeline: ~30 weeks. Compressed: ~25 weeks.** The savings come from Phases 0, 3, and 4 where specialist tools eliminate weeks of infrastructure work. The critical path (Memory → Daemon → Multi-Agent) doesn't compress much because those are the components that require the most custom work — which is also why they're the most valuable.
+
+### The Tradeoff
+
+Integration is faster but creates dependencies. If Composio changes their API, your credential management breaks. If E2B raises prices, your sandbox costs spike. If PiloTY stops being maintained, your PTY stops improving.
+
+The rule of thumb: **integrate for infrastructure, build for intelligence.** Use external tools for the commodity layers (sandbox VMs, OAuth handshakes, WebRTC pipes, browser automation). Build in-house for the layers that define your agent's behavior (memory, authority, coordination, decision-making).
+
+The components that matter most are the ones nobody else can build for you — because they encode how *your* agent thinks, remembers, and decides.
 
 ---
 

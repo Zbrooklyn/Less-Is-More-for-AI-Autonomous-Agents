@@ -8,7 +8,7 @@
 
 **Want to go deep on one component?** Jump to the relevant [component document](#component-deep-dives) below.
 
-**Want to know who's winning?** The [Agent Framework Scorecard](components/12-agent-framework-scorecard.md) scores 12 tools against all 10 components.
+**Want to know who's winning?** The [Agent Framework Scorecard](components/12-agent-framework-scorecard.md) scores 17 autonomous AI agents against all 10 components — from code-first tools to general-purpose platforms.
 
 **Want to build it?** The [Implementation Roadmap](components/11-implementation-roadmap.md) gives the build order, and the [Deep Spec](components/13-deep-spec-highest-impact-component.md) gives the technical blueprint for the first component.
 
@@ -90,6 +90,7 @@ Each document covers: definition, purpose, current status, key insight, what exi
 | # | Document | What It Covers |
 |---|----------|---------------|
 | 11 | [Implementation Roadmap](components/11-implementation-roadmap.md) | Dependency graph, impact vs. effort matrix, 6 build phases (30 weeks), critical path, quick wins |
-| 12 | [Agent Framework Scorecard](components/12-agent-framework-scorecard.md) | 12 tools scored on all 10 components, rankings, per-tool analysis, market gaps, best-in-class picks |
+| 12 | [Agent Framework Scorecard](components/12-agent-framework-scorecard.md) | 17 autonomous AI agents scored on all 10 components — rankings, per-tool analysis, market gaps, best-in-class picks, component ecosystem |
 | 13 | [Deep Spec — Memory With Teeth](components/13-deep-spec-highest-impact-component.md) | Full technical spec: architecture, data models, API, tech stack, 7 phases (37 days), testing, risks |
 | 14 | [Personal Agent Stack](components/14-personal-agent-stack.md) | Current setup assessment, per-component scoring, gap analysis, quick wins, priority ranking |
+| 15 | [Agentic AI Wishlist](components/15-agentic-ai-wishlist.md) | 15 cross-cutting capabilities beyond the 10 components — cost, context management, failure recovery, portability |

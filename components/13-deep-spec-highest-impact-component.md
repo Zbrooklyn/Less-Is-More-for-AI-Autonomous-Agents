@@ -2,7 +2,7 @@
 
 ## Why Memory
 
-The Implementation Roadmap (doc 11) identifies Memory With Teeth as the highest impact-to-effort component in the entire framework. The Agent Framework Scorecard (doc 12) confirms it — only 3 of 12 tools reach even PARTIAL on memory, making it the most underserved high-impact component in the market.
+The Implementation Roadmap (doc 11) identifies Memory With Teeth as the highest impact-to-effort component in the entire framework. The Agent Framework Scorecard (doc 12) confirms it — only 5 of 17 tools reach even PARTIAL on memory, making it the most underserved high-impact component in the market.
 
 Memory is the foundation:
 - The **stateful agent daemon** depends on it — a daemon without persistent state is a cron job

@@ -113,7 +113,7 @@ Everything else is either:
 - A service-specific connector you install only if you use that service
 - Aspirational tech that doesn't exist well yet
 
-The people building 200-tool setups are solving a problem that doesn't exist. The people saying "just give it bash" are creating a problem that doesn't need to exist. The real number is about **10, and most AI coding agents already have most of them.**
+The people building 200-tool setups are solving a problem that doesn't exist. The people saying "just give it bash" are creating a problem that doesn't need to exist. The real number is about **10, and most AI agents already have most of them.**
 
 ---
 
@@ -1244,7 +1244,7 @@ Not ten thousand. Ten.
 | **PRIMITIVE** | 4 | Memory, Sandboxed execution, Credential management, Multi-agent orchestration |
 | **DON'T HAVE** | 4 | Desktop vision + control, Stateful agent daemon, Interactive PTY, Audio/video I/O |
 
-**1 out of 10 is fully built. 1 is close. 4 have rough foundations to build on. 4 don't exist at all.**
+**1 out of 10 is fully built. 1 is close. 4 have rough foundations to build on. 4 aren't integrated into mainstream AI agents** (though specialist tools like Warp, Letta, and OpenClaw have proven individual components).
 
 That's the honest gap between where AI agents are today and where they need to be.
 

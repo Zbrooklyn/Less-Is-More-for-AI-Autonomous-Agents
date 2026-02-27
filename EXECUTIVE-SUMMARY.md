@@ -38,7 +38,7 @@ Everything a fully autonomous AI agent needs fits into exactly 10 components:
 | **HAVE** | 1 | Fully built and functional |
 | **PARTIAL** | 1 | Most of the way there, gaps in integration |
 | **PRIMITIVE** | 4 | Rough foundations exist, major features missing |
-| **DON'T HAVE** | 4 | Don't exist in any AI agent framework |
+| **DON'T HAVE** | 4 | Not integrated into mainstream AI agents |
 
 **1 out of 10 is fully built. The other 9 are the roadmap for the next era of AI tooling.**
 
@@ -46,9 +46,9 @@ Everything a fully autonomous AI agent needs fits into exactly 10 components:
 
 ## What the Market Looks Like
 
-The [Agent Framework Scorecard](components/12-agent-framework-scorecard.md) scores 17 tools — 14 coding agents and 3 agent platforms — against all 10 components. Key findings:
+The [Agent Framework Scorecard](components/12-agent-framework-scorecard.md) scores 17 tools against all 10 components — from code-first agents (Claude Code, Devin, Cursor) to general-purpose agents (OpenClaw, Letta). The 10 components apply equally to all of them. Key findings:
 
-**No tool scores above 63%.** The highest-scoring tools (Warp and OpenClaw, tied at 19/30) get there by being fundamentally different — a terminal and a personal assistant, not coding agents. The highest-scoring coding agent (Devin) covers 60%. The best open-source coding tools (Claude Code, OpenHands, Cline) score 14/30. Agent platforms like Letta (17/30) have the best implementations of memory and daemon — the components coding agents are missing. The market is early.
+**No tool scores above 63%.** The highest-scoring tools (Warp and OpenClaw, tied at 19/30) approach the problem from different angles — a terminal and a personal assistant — but are measured against the same 10 components. Devin covers 60%. The best open-source tools (Claude Code, OpenHands, Cline) score 14/30. Letta (17/30) has the best implementations of memory and daemon. The market is early across the board.
 
 **Three tiers of market maturity:**
 
@@ -58,7 +58,7 @@ The [Agent Framework Scorecard](components/12-agent-framework-scorecard.md) scor
 | **Active battleground** | Browser, sandbox, multi-agent, daemon | Tools are differentiating here. 41-65% coverage. |
 | **Wide open** | Credentials, memory, desktop, PTY, audio/video | 5 of 10 components are deeply underserved or absent. 6-29% coverage. |
 
-**The first coding agent to integrate Letta-quality memory and Warp-quality PTY into a Claude Code-quality terminal experience will leapfrog everyone.** The components have been proven individually. Nobody has assembled them yet.
+**The first agent to integrate Letta-quality memory and Warp-quality PTY into a Claude Code-quality terminal experience will leapfrog everyone.** The components have been proven individually. Nobody has assembled them yet.
 
 ---
 

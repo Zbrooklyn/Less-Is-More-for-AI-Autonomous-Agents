@@ -133,6 +133,72 @@ The system **checks whether the AI actually followed the rules:**
 - Corrections from the user, automatically captured and enforced
 - Cross-session continuity — picking up where the last session left off
 
+## Market Landscape (February 2026)
+
+The memory space has exploded. At least a dozen competing systems now exist, with three major benchmarks (LOCOMO, LongMemEval, Letta Memory Benchmark) creating some standardization. Despite the activity, **nobody implements all six levels.**
+
+### The 6-Level Market Matrix
+
+| System | L1 Auto-Inject | L2 Enforce | L3 Semantic | L4 Auto-Capture | L5 Compress-Proof | L6 Verify | Notes |
+|--------|:-:|:-:|:-:|:-:|:-:|:-:|-------|
+| **Letta** | YES | PARTIAL | YES | YES | YES | NO | Git-backed Context Repositories + sleep-time compute. Model-dependent. |
+| **Mastra OM** | YES | NO | YES | YES | YES | NO | 94.87% LongMemEval. Observer/Reflector agents. 3-6x compression. Open source. |
+| **Zep (Graphiti)** | YES | NO | YES | YES | YES | NO | Temporal knowledge graphs. Old facts invalidated, not deleted. 94.8% DMR. |
+| **Hindsight** | YES | NO | YES | YES | YES | NO | 91.4% LongMemEval. Four memory networks. MIT-licensed. |
+| **Cognee** | YES | NO | YES | YES | YES | NO | Knowledge graph engine. $7.5M seed. 70+ companies. 38+ source types. |
+| **Mem0** | YES | NO | YES | YES | YES | NO | 66.9% LOCOMO. Simplest integration. Graph memory paywalled at $249/mo. |
+| **Google Memory Bank** | YES | NO | YES | YES | YES | NO | Only major cloud provider with managed agent memory. Black box. |
+| **ODEI** | YES | YES | YES | YES | YES | NO | Constitutional memory — 7 validation layers. Built for financial/transactional agents. |
+| **memU** | YES | NO | YES | YES | YES | NO | Claims 92% LOCOMO — unverified independently. Hierarchical knowledge graphs. |
+| **Claude Code** | YES | YES | NO | NO | PARTIAL | NO | CLAUDE.md + hooks. Simplest and most transparent. Also most manual. |
+| **OpenAI** | PARTIAL | NO | PARTIAL | PARTIAL | PARTIAL | NO | No developer-facing memory API. Biggest gap of any major provider. |
+
+### Key Findings
+
+**Level 6 (behavioral verification) doesn't exist anywhere.** Zero implementations across the entire market. No system checks whether the agent actually followed its own rules after acting. This is the biggest open problem in agent memory.
+
+**Level 2 (enforcement) is almost nobody.** Only Claude Code (hooks) and ODEI (constitutional validation). Everyone else can remember things but can't block bad actions based on what they remember. Memory without enforcement is still a suggestion.
+
+**Most systems cluster at L1+L3+L4+L5.** They can inject, search, capture, and persist. But they can't enforce or verify. The pattern is clear: the industry has solved memory storage. It hasn't solved memory enforcement.
+
+**Claude Code is unique:** the only system with L2 enforcement but missing L3 (semantic retrieval) and L4 (automatic capture). It can block bad actions but can't search memory by meaning or learn from corrections automatically.
+
+### Benchmark Landscape
+
+Multiple benchmarks now exist, with different methodologies producing different scores:
+
+| Benchmark | What It Tests | Top Score | By Whom |
+|-----------|--------------|-----------|---------|
+| **LongMemEval** (ICLR 2025) | Multi-session recall, temporal reasoning, knowledge updates. 500 questions, 115K-1.5M tokens. | 94.87% | Mastra OM + gpt-5-mini |
+| **LOCOMO** (ACL 2024) | Multi-session conversations, ~600 turns. Single-hop, multi-hop, temporal, open-domain. | 92.09% (unverified) | memU (NevaMind) |
+| **Deep Memory Retrieval** | Memory retrieval accuracy. | 94.8% | Zep (Graphiti) |
+| **Letta Leaderboard** | Agentic memory operations (read, write, update). Tests models, not systems. | Claude Sonnet 4 | Letta (own benchmark) |
+
+**Warning:** LOCOMO scores vary wildly by scoring methodology — F1, BLEU, and LLM-as-Judge produce different numbers. Scores from different systems using different methodologies are not directly comparable.
+
+### Notable Approaches
+
+**Mastra Observational Memory** — the dark horse. Two background agents (Observer and Reflector) watch conversations and compress them into dated observation logs. Observer triggers at 30K unobserved tokens, Reflector consolidates at 40K observations. Achieves 3-6x text compression, 5-40x for tool-heavy workloads. Stable append-only prefix enables high prompt cache hit rates (4-10x cost reduction). Open source, from the team that built Gatsby.
+
+**Letta Sleep-Time Compute** — background agents that run during idle periods to consolidate fragmented memories, identify patterns, and reorganize/deduplicate memory blocks. The closest thing to "memory that improves itself" in production.
+
+**Zep Temporal Knowledge Graphs** — when facts change, old ones are marked as superseded, not deleted. The agent always uses current information but can access the history of how facts evolved. Critical for long-running agents where context changes over weeks and months.
+
+**ODEI Constitutional Memory** — 7 validation layers before every memory write: immutability, temporal validity, referential integrity, authority, deduplication, provenance, constitutional alignment. Zero hallucination errors and zero duplicate actions in Jan-Feb 2026 production. The only system designed specifically for agents handling money.
+
+### Build vs. Integrate Assessment
+
+For the [Implementation Roadmap](11-implementation-roadmap.md) Phase 1 (Memory Foundation):
+
+- **Integrate for L3+L4+L5:** Mastra OM (best compression + benchmarks), Hindsight (MIT license, four-network architecture), or Cognee (knowledge graphs, production-proven) can provide semantic retrieval, automatic capture, and compression-proof persistence as a foundation.
+- **Build for L2:** Enforcement hooks are custom to your agent's rule system. Only Claude Code has this, and it's primitive. The daemon's enforcement engine needs to understand intent, not just pattern-match commands.
+- **Build for L6:** Nobody has this. First-mover opportunity. A post-response verification pass that compares actions against known rules would be genuinely novel.
+- **Build the glue:** The integration between L1 injection, L2 enforcement, and L3 retrieval is the custom work. No existing system combines all three.
+
+---
+
 ## The Bottom Line
 
 **Memory with teeth is the single biggest limitation of AI agents today.** Tools, browser, desktop control — those are all solvable engineering problems. Memory touches the architecture of how models work at a fundamental level. It's the foundation that the stateful daemon and multi-agent orchestration both depend on. Build it first.
+
+The market has made significant progress on Levels 1, 3, 4, and 5 — injection, retrieval, capture, and persistence are solved problems with multiple production implementations. **Levels 2 (enforcement) and 6 (verification) remain wide open.** The first system to combine all six levels will have a memory architecture that no existing tool matches.

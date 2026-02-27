@@ -4,7 +4,11 @@ Terms defined or coined in the Less Is More framework, in alphabetical order.
 
 ---
 
-**Accuracy multiplier** — A tool that doesn't add new capability but reduces the error rate on common operations. Example: the Edit tool prevents wrong-location edits that raw `sed` would cause. The operation is possible without it; it's just less reliable.
+**Accuracy multiplier** — A tool that doesn't add new capability but reduces the error rate on common operations.
+
+**Agent, code-first** — An autonomous AI agent whose primary entry point is writing, editing, and reasoning about code — but whose architecture (the 10 components) is universal. As a code-first agent adds memory, a daemon, browser, and audio, it naturally grows beyond coding because the components are inherently general. Examples: Claude Code, Devin, Cursor, Codex CLI.
+
+**Agent, general-purpose** — An autonomous AI agent whose primary focus is personal automation, messaging, or life orchestration rather than coding specifically. Scored against the same 10-component framework as code-first agents because the architecture is universal. Often has stronger implementations of memory, daemon, and desktop control. Examples: OpenClaw, NanoClaw, Letta. Example: the Edit tool prevents wrong-location edits that raw `sed` would cause. The operation is possible without it; it's just less reliable.
 
 **Adaptive planning engine** — The component of multi-agent orchestration that handles replanning when reality doesn't match the original plan — scope changes, failed subtasks, discovered complexity, worker failures.
 
@@ -16,7 +20,11 @@ Terms defined or coined in the Less Is More framework, in alphabetical order.
 
 **Behavioral verification** — A post-response check that verifies the AI actually followed its own learned rules. The sixth level of memory with teeth. Currently doesn't exist — compliance is honor-based.
 
-**Capability unlock** — A tool that enables something fundamentally impossible without it. Distinguished from accuracy multipliers, which improve reliability on things already possible. Example: a web browser is a capability unlock because no amount of terminal commands can click a button on a webpage.
+**Capability unlock** — A tool that enables something fundamentally impossible without it.
+
+**Claw** — Andrej Karpathy's term for the next stage of AI agent evolution. The progression is "Chat → Code → Claw." The 10-component framework shows why this progression is natural — a code-first agent that adds memory, a daemon, browser, and audio doesn't become a different thing, it becomes a more complete version of the same thing. The components are universal. Examples: OpenClaw (68K stars), NanoClaw (security-first alternative), ZeroClaw (Rust, minimal footprint).
+
+**Component ecosystem** — The layer of specialized tools, frameworks, and infrastructure beneath complete agents — each with a best-in-class implementation of a single component from the 10-component framework. Not competitors to complete agents, but building blocks any agent could integrate. Examples: Mastra OM and Mem0 (memory), E2B (sandbox), LiveKit (audio/video), Composio (credentials), Browser-Use (browser).
 
 **Compression-proof persistence** — Memory that survives context window compression during long sessions. Critical rules pinned outside the conversation context so they remain at full fidelity regardless of session length. The fifth level of memory with teeth.
 
