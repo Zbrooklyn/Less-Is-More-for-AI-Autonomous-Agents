@@ -10,7 +10,7 @@ The AI agent space is crowded and moving fast. Claude Code, Cursor, Copilot, Dev
 
 This document applies the same 10-component lens to every major player. It answers: who's actually closest to a fully autonomous agent? Where is each tool investing? Where are the market gaps that no one is filling? And most importantly — which tool should you use for which type of work?
 
-**Note:** This scorecard focuses on AI coding agents — tools whose primary function is writing, editing, and reasoning about code. Adjacent tools like app builders (Bolt.new, Lovable, v0, Emergent) generate code as output but aren't coding agents in the same sense — they're closer to no-code platforms with AI generation. They're worth watching but don't belong in a head-to-head comparison with tools designed for developers working in codebases.
+**Note:** This scorecard primarily covers AI coding agents — tools whose primary function is writing, editing, and reasoning about code. It also includes agent platforms (OpenClaw, NanoClaw, Letta) that aren't coding-specific but have real implementations of components the coding agents are missing. App builders (Bolt.new, Lovable, v0, Emergent) generate code as output but aren't agents in the same sense — they're worth watching but don't belong here.
 
 ## Scoring Key
 
@@ -27,6 +27,8 @@ This document applies the same 10-component lens to every major player. It answe
 
 ## The Master Scorecard
 
+### Coding Agents
+
 | # | Component | Claude Code | Cursor | Copilot | Devin | OpenHands | Windsurf | Aider | Continue | Cline | Amazon Q / Kiro | Jules | Codex CLI | Replit Agent | Warp |
 |---|-----------|-------------|--------|---------|-------|-----------|----------|-------|----------|-------|-----------------|-------|-----------|--------------|------|
 | 1 | Terminal + structured tools | **HAVE** | **HAVE** | **HAVE** | **HAVE** | **HAVE** | **HAVE** | **HAVE** | **HAVE** | **HAVE** | **HAVE** | **HAVE** | **HAVE** | **HAVE** | **HAVE** |
@@ -40,26 +42,46 @@ This document applies the same 10-component lens to every major player. It answe
 | 9 | Credential management | PARTIAL | DON'T HAVE | PARTIAL | PRIMITIVE | PRIMITIVE | DON'T HAVE | DON'T HAVE | PRIMITIVE | PRIMITIVE | PARTIAL | PRIMITIVE | PRIMITIVE | PARTIAL | PARTIAL |
 | 10 | Multi-agent orchestration | PARTIAL | PARTIAL | PRIMITIVE | PRIMITIVE | PARTIAL | PRIMITIVE | DON'T HAVE | PRIMITIVE | PARTIAL | PARTIAL | PRIMITIVE | PARTIAL | PARTIAL | PARTIAL |
 
+### Agent Platforms (not coding-specific, scored for component implementations)
+
+These are general-purpose agent platforms, not coding agents. They're included because they have real implementations of components that most coding agents are missing — particularly memory, daemon mode, and desktop control. Scores reflect what each component actually delivers, measured against the same bar as coding agents.
+
+| # | Component | OpenClaw | NanoClaw | Letta |
+|---|-----------|----------|----------|-------|
+| 1 | Terminal + structured tools | PARTIAL | **HAVE** | PARTIAL |
+| 2 | Web browser | PARTIAL | PARTIAL | PRIMITIVE |
+| 3 | Desktop vision + control | PARTIAL | DON'T HAVE | DON'T HAVE |
+| 4 | Memory with teeth | PARTIAL | PRIMITIVE | **HAVE** |
+| 5 | Stateful agent daemon | PARTIAL | PARTIAL | **HAVE** |
+| 6 | Interactive PTY | PARTIAL | DON'T HAVE | PARTIAL |
+| 7 | Audio/video I/O | PARTIAL | DON'T HAVE | PRIMITIVE |
+| 8 | Sandboxed execution | PARTIAL | **HAVE** | PARTIAL |
+| 9 | Credential management | PRIMITIVE | PRIMITIVE | PRIMITIVE |
+| 10 | Multi-agent orchestration | PARTIAL | PRIMITIVE | PARTIAL |
+
 ---
 
 ## Total Scores
 
-| Rank | Tool | Score | Profile |
-|------|------|-------|---------|
-| 1 | **Warp** | 19/30 | Terminal-native orchestrator with the only real interactive PTY — unique approach |
-| 2 | **Devin** | 18/30 | Most complete autonomous agent — browser, sandbox, memory, event-driven |
-| 3 | **Replit Agent** | 17/30 | Full platform play — hosting, database, auth, deployment, snapshot rollback |
-| 4 | **Codex CLI** | 16/30 | Strong sandbox, multi-agent, and interactive PTY — open source |
-| 5 | **Claude Code** | 14/30 | Best terminal tools, strong memory and multi-agent, MCP ecosystem |
-| 5 | **OpenHands** | 14/30 | Best open-source sandbox and browser, strong multi-agent architecture |
-| 5 | **Cline** | 14/30 | Built-in browser, multi-agent via CLI 2.0, community-driven |
-| 8 | **Cursor** | 13/30 | Best IDE experience, built-in browser, 8-agent parallelism |
-| 8 | **Jules** | 13/30 | Async cloud agent, ephemeral VM sandbox, Google ecosystem |
-| 10 | **Amazon Q / Kiro** | 12/30 | AWS-native, sandbox execution, CAO multi-agent framework |
-| 11 | **GitHub Copilot** | 11/30 | Event-driven via GitHub, secret scanning, ephemeral environments |
-| 12 | **Windsurf** | 10/30 | Auto-learning memories, new multi-agent, catching up fast |
-| 13 | **Continue** | 7/30 | CI-enforceable rules are unique, but narrow scope |
-| 14 | **Aider** | 6/30 | Best pure pair programmer, but minimal beyond file editing and git |
+| Rank | Tool | Score | Category | Profile |
+|------|------|-------|----------|---------|
+| 1 | **Warp** | 19/30 | Coding | Terminal-native orchestrator with the only real interactive PTY |
+| 1 | **OpenClaw** | 19/30 | Platform | Broadest tool — touches all 10 components, but shallow and unreliable |
+| 3 | **Devin** | 18/30 | Coding | Most complete autonomous coding agent — browser, sandbox, memory, event-driven |
+| 4 | **Replit Agent** | 17/30 | Coding | Full platform play — hosting, database, auth, deployment, snapshot rollback |
+| 4 | **Letta** | 17/30 | Platform | Best memory architecture (HAVE) + best daemon (HAVE) — the memory reference |
+| 6 | **Codex CLI** | 16/30 | Coding | Strong sandbox, multi-agent, and interactive PTY — open source |
+| 7 | **Claude Code** | 14/30 | Coding | Best terminal tools, strong memory and multi-agent, MCP ecosystem |
+| 7 | **OpenHands** | 14/30 | Coding | Best open-source sandbox and browser, strong multi-agent architecture |
+| 7 | **Cline** | 14/30 | Coding | Built-in browser, multi-agent via CLI 2.0, community-driven |
+| 10 | **Cursor** | 13/30 | Coding | Best IDE experience, built-in browser, 8-agent parallelism |
+| 10 | **Jules** | 13/30 | Coding | Async cloud agent, ephemeral VM sandbox, Google ecosystem |
+| 10 | **NanoClaw** | 13/30 | Platform | Security-first OpenClaw alternative — container isolation, 3,900 lines of code |
+| 13 | **Amazon Q / Kiro** | 12/30 | Coding | AWS-native, sandbox execution, CAO multi-agent framework |
+| 14 | **GitHub Copilot** | 11/30 | Coding | Event-driven via GitHub, secret scanning, ephemeral environments |
+| 15 | **Windsurf** | 10/30 | Coding | Auto-learning memories, new multi-agent, catching up fast |
+| 16 | **Continue** | 7/30 | Coding | CI-enforceable rules are unique, but narrow scope |
+| 17 | **Aider** | 6/30 | Coding | Best pure pair programmer, but minimal beyond file editing and git |
 
 ---
 
@@ -233,33 +255,69 @@ This document applies the same 10-component lens to every major player. It answe
 
 ---
 
+### OpenClaw (Significant Gravitas → OpenAI) — 19/30 ⚠️ Agent Platform
+
+**What it does best:** The broadest tool in the survey — the only one that scores above zero on all 10 components. OpenClaw is a general-purpose personal AI agent that connects to messaging platforms (WhatsApp, Telegram, Slack, Discord) and orchestrates your digital life. Its always-on Gateway daemon is event-driven and auto-restarts on boot. Desktop vision via nut-js provides native mouse/keyboard control. Memory uses sqlite-vec for hybrid semantic search with a pre-compaction flush that saves context to disk before the context window compresses. Browser automation uses Playwright with a Chrome Extension relay mode that piggybacks on your real browser session. Talk Mode provides real STT/TTS with ElevenLabs and OpenAI.
+
+**Where it falls short:** Broad but shallow. The browser is in the community's top-20 issues list ("browser control broken"). The Gateway leaks 6GB in 26 minutes and has documented crash loops. Memory "gets worse the more you use it" — memoryFlush is disabled by default. Desktop control is a separate community skill (Clawd Cursor v0.5.6), not core. Sandboxing is opt-in (42K exposed instances on Shodan run unsandboxed). The codebase is ~400K lines of "vibe code" with a critical RCE vulnerability (CVE-2026-25253) and 20% of ClawHub skills were malicious. Credentials are plaintext JSON.
+
+**Best for:** Personal automation — managing messages, emails, calendar, smart home. Developers who want a persistent AI assistant running in the background across messaging platforms. NOT for production coding workflows.
+
+**Unique strength:** Breadth. No other tool even attempts to cover desktop control, messaging integration, memory, browser, audio, multi-agent, AND coding tools in one package. Whether any of them work reliably is a different question.
+
+---
+
+### NanoClaw (Qwibit) — 13/30 ⚠️ Agent Platform
+
+**What it does best:** Security-first personal AI assistant built on Anthropic's Claude Agent SDK in ~3,900 lines of TypeScript. Every agent session runs in an isolated Linux container with explicit mount policies and credential blocking. The full Claude Code tool suite (Read, Write, Edit, Glob, Grep, Bash) runs inside containers. Headless Chromium browser automation via agent-browser skill. Always-on via launchd/systemd with SQLite-backed state persistence.
+
+**Where it falls short:** Most capabilities come from the Claude SDK, not NanoClaw itself. Memory is a plain CLAUDE.md text file per group — no semantic search, no enforcement. "Agent Swarms" is marketing for enabling a Claude SDK experimental environment variable — NanoClaw implements zero swarm logic. No desktop vision (container-only). No audio/video. No interactive PTY. Container network egress is unrestricted (open issue #458). Creator acknowledges agents can discover API keys inside containers.
+
+**Best for:** Users who want OpenClaw's concept (AI assistant on messaging platforms) with actual security. Container-isolated agent sessions that can't damage the host machine.
+
+**Unique strength:** The smallest, most auditable codebase of any agent on this list. ~3,900 lines across 15 files — a human can audit the entire system in under 10 minutes. Security through simplicity.
+
+---
+
+### Letta (formerly MemGPT) — 17/30 ⚠️ Agent Platform
+
+**What it does best:** The most architecturally ambitious memory system in the agent space. Three-tier hierarchy: core memory (in-context, self-editable), recall memory (auto-persisted conversation history), and archival memory (semantic search over unlimited entries). Agents actively manage their own memory through tool calls — they decide what to store, retrieve, and summarize. Context Repositories (Feb 2026) add git-backed memory with versioning and concurrent subagent support, explicitly inspired by CLAUDE.md. The daemon architecture is genuine — agents are persistent services backed by PostgreSQL, survive server restarts, and scale horizontally via Kubernetes. Letta Code (Dec 2025) extends into coding agent territory with terminal tools and E2B sandboxed execution.
+
+**Where it falls short:** Memory effectiveness is tightly coupled to model quality. GPT-4 and Claude work well; open/local LLMs often fail badly because the whole approach depends on the LLM correctly following complex memory management instructions. The LoCoMo benchmark 74% number is misleading — Letta's own team admitted it measures file search, not their actual memory system. Context window overflow can crash the summarizer (the mechanism designed to handle overflow also overflows). No desktop vision. No browser beyond URL fetching. Credential management has bugs (encrypted secrets fail to decrypt). Multi-agent relies on LLM instruction following for coordination, inheriting all the fragility issues.
+
+**Best for:** Building stateful agents that need persistent, cross-session memory. Research and enterprise applications where memory management is the core requirement. Teams willing to use strong models (GPT-4, Claude) and accept the model-dependency tradeoff.
+
+**Unique strength:** Memory with teeth — scored HAVE, the only tool on this scorecard to achieve that rating. The self-editing memory with tiered hierarchy and semantic archival search is genuinely novel. No other tool lets the agent actively curate its own long-term knowledge base.
+
+---
+
 ## Market Gap Analysis
 
 ### What every tool has
 
-**Terminal + structured tools.** All 14 tools score HAVE. This is table stakes. The foundation is completely solved.
+**Terminal + structured tools.** 15 of 17 tools score HAVE (OpenClaw and Letta score PARTIAL — they have shell execution but lack structured file editing guardrails). Terminal capability is table stakes.
 
 ### What most tools have
 
-**Web browser (9 of 14 have it at PARTIAL or above).** Cursor, Devin, OpenHands, and Cline have built-in browsers. Claude Code, Windsurf, Replit, and Warp have it via built-in Webview or MCP add-ons. Codex has web search. But 5 tools (Copilot, Aider, Continue, Amazon Q, Jules) have no browser capability at all.
+**Web browser (11 of 17 have it at PARTIAL or above).** Cursor, Devin, OpenHands, and Cline have built-in browsers. Claude Code, Windsurf, Replit, Warp, OpenClaw, and NanoClaw have it via built-in tools or add-ons. Codex has web search. But 5 tools (Copilot, Aider, Continue, Amazon Q, Jules) have no browser capability at all.
 
-**Sandboxed execution (9 of 14 have it at PARTIAL or above).** Devin, OpenHands, Jules, Codex CLI, and Replit have strong sandbox. Claude Code, Cursor, Copilot, Amazon Q, and Warp have partial sandbox. The remaining 4 have primitive or no sandbox.
+**Sandboxed execution (11 of 17 have it at PARTIAL or above).** Devin, OpenHands, Jules, Codex CLI, Replit, and NanoClaw have strong sandbox. Claude Code, Cursor, Copilot, Amazon Q, Warp, OpenClaw, and Letta have partial sandbox. The remaining 3 have primitive or no sandbox.
 
 ### What few tools have
 
-**Memory with teeth (3 of 14 at PARTIAL or above).** Only Claude Code, Devin, and Windsurf reach PARTIAL. Everyone else is PRIMITIVE or DON'T HAVE. Memory is the most underserved high-impact component.
+**Memory with teeth (5 of 17 at PARTIAL or above).** Letta scores HAVE — the only tool to achieve that. Claude Code, Devin, Windsurf, and OpenClaw reach PARTIAL. Everyone else is PRIMITIVE or DON'T HAVE. Memory remains the most underserved high-impact component, though the agent platforms are pushing the boundary.
 
-**Stateful agent daemon (5 of 14 at PARTIAL or above).** Copilot, Devin, Jules, Replit, and Warp reach PARTIAL. No tool has a full daemon. This is the biggest capability gap in the market.
+**Stateful agent daemon (7 of 17 at PARTIAL or above).** Letta scores HAVE. Copilot, Devin, Jules, Replit, Warp, OpenClaw, and NanoClaw reach PARTIAL. Among coding agents, no tool has a full daemon.
 
-**Credential management (5 of 14 at PARTIAL or above).** Claude Code, Copilot, Amazon Q, Replit, and Warp reach PARTIAL. Most tools rely on environment variables. Security is an afterthought.
+**Credential management (5 of 17 at PARTIAL or above).** Claude Code, Copilot, Amazon Q, Replit, and Warp reach PARTIAL. Most tools rely on environment variables. Security is an afterthought across the entire market.
 
 ### What almost no tool has
 
-**Desktop vision + control.** Every score is PRIMITIVE or DON'T HAVE. Despite Anthropic's Computer Use existing as a product, no coding agent integrates it natively. This remains a research capability, not a product feature.
+**Desktop vision + control.** OpenClaw reaches PARTIAL (via the Clawd Cursor community skill, v0.5.6). Every other tool is PRIMITIVE or DON'T HAVE. Despite Anthropic's Computer Use existing as a product, no coding agent integrates desktop control natively.
 
-**Interactive PTY.** Warp is the only tool that scores HAVE — it's a terminal, so interactive PTY is its native medium. Codex CLI reaches PARTIAL (via js_repl). Every other tool is PRIMITIVE or DON'T HAVE. Outside of Warp, no coding agent can step through a debugger, use a REPL interactively, or navigate an SSH session.
+**Interactive PTY.** Warp is the only tool that scores HAVE — it's a terminal, so interactive PTY is its native medium. Codex CLI and OpenClaw reach PARTIAL. Letta Code has basic terminal interaction. Every other tool is PRIMITIVE or DON'T HAVE.
 
-**Audio/video I/O.** The weakest dimension across the entire market. Aider and Codex have voice input. Jules has audio summaries. Devin can ingest video files. Replit and Warp have basic media handling. No tool has real-time audio/video I/O.
+**Audio/video I/O.** The weakest dimension across the entire market. OpenClaw's Talk Mode (STT/TTS) is the strongest at PARTIAL but has documented reliability bugs. Aider and Codex have voice input. Jules has audio summaries. Devin can ingest video files. No tool has reliable real-time audio/video I/O.
 
 ---
 
@@ -269,14 +327,16 @@ This document applies the same 10-component lens to every major player. It answe
 |-----------|----------|-----|
 | Terminal + structured tools | **Claude Code** | Native structured tools (Read, Edit, Grep, Glob) with explicit design rationale. Others have terminal access but not the same precision tooling. |
 | Web browser | **Devin** | Built-in Chrome in a full cloud sandbox. Autonomous web navigation, API doc reading, Figma browsing. Cursor is close with built-in Chromium. |
-| Desktop vision + control | **No leader** | No tool scores above PRIMITIVE. The entire market is missing this. |
-| Memory with teeth | **Devin** | Vectorized codebase snapshots, full replay timeline, Devin Wiki. Claude Code is close with CLAUDE.md + hooks. Windsurf's auto-learning is distinctive. |
-| Stateful agent daemon | **Devin** | Closest to always-on — event-driven triggers, persistent cloud service. Copilot is close with GitHub event integration. Jules with async cloud tasks. Replit's persistent workspace is notable. |
+| Desktop vision + control | **OpenClaw** ⚠️ | The only tool above PRIMITIVE (via Clawd Cursor skill). But it's v0.5.6, a community skill, and Linux support is limited. No coding agent has cracked this. |
+| Memory with teeth | **Letta** ⚠️ | The only HAVE score. Three-tier self-editing memory with semantic archival search and git-backed Context Repositories. Model-dependent but architecturally best-in-class. Among coding agents, Devin leads. |
+| Stateful agent daemon | **Letta** ⚠️ | Genuine persistent agent services backed by PostgreSQL with horizontal Kubernetes scaling. Among coding agents, Devin leads with event-driven triggers. |
 | Interactive PTY | **Warp** | The only tool that scores HAVE. Warp *is* the terminal — it attaches to psql, vim, gdb, Python REPLs, and SSH natively. Codex CLI's js_repl is a distant second. |
-| Audio/video I/O | **No leader** | No tool scores above PRIMITIVE. Voice input (Aider, Codex) and video file ingestion (Devin) are the closest, but none are integrated. |
-| Sandboxed execution | **Codex CLI / Replit** | Codex has OS-enforced kernel-level isolation (Landlock, seatbelt). Replit has Nix-based reproducible containers with snapshot rollback. Different approaches, both strong. Devin, Jules, and OpenHands also score HAVE. |
-| Credential management | **GitHub Copilot** | Built-in secret scanning, short-lived tokens in ephemeral environments. Amazon Q is strong for AWS-native. Replit handles secrets within its platform. Claude Code's scoped proxy is solid. |
+| Audio/video I/O | **OpenClaw** ⚠️ | Talk Mode with STT/TTS is the only PARTIAL, but has documented reliability bugs. Among coding agents, no leader — voice input (Aider, Codex) and video ingestion (Devin) are the closest. |
+| Sandboxed execution | **Codex CLI / Replit / NanoClaw** | Codex has kernel-level isolation. Replit has Nix containers with snapshot rollback. NanoClaw has container isolation with mount security by default. Devin, Jules, and OpenHands also score HAVE. |
+| Credential management | **GitHub Copilot** | Built-in secret scanning, short-lived tokens in ephemeral environments. Amazon Q is strong for AWS-native. No tool — coding or platform — has proper credential management. |
 | Multi-agent orchestration | **Cursor** | 8 parallel agents with Mission Control grid view. Codex CLI is close with first-party multi-agent. Claude Code has the richest ecosystem (native + community). |
+
+*⚠️ = Agent platform, not a coding agent. Best-in-class for the component itself, but optimized for different workflows.*
 
 ---
 
@@ -296,11 +356,19 @@ This document applies the same 10-component lens to every major player. It answe
 
 ### Steady
 
-**Devin.** Was the highest-scoring tool until Warp. Adding features (Wiki, Search) but the core architecture hasn't changed dramatically. The risk is that open-source tools (OpenHands, Claude Code, Codex) catch up by offering similar capabilities with more transparency and customization.
+**Devin.** Was the highest-scoring coding agent until Warp. Adding features (Wiki, Search) but the core architecture hasn't changed dramatically. The risk is that open-source tools (OpenHands, Claude Code, Codex) catch up by offering similar capabilities with more transparency and customization.
 
 **Replit Agent.** Strong platform integration but increasingly competing with general-purpose agents that can deploy anywhere. The platform lock-in is both the strength and the constraint. Replit's bet is that developers will choose convenience over flexibility — and for prototyping and MVPs, they're often right.
 
+**Letta.** Context Repositories (Feb 2026) and Letta Code (Dec 2025) show the platform expanding from pure memory infrastructure into coding agent territory. The memory architecture is the most ambitious in the space. The risk is model dependency — if open/local LLMs don't improve at instruction-following, Letta's approach only works with expensive frontier models.
+
 **GitHub Copilot.** Methodical expansion. Agentic Memory, CLI GA, Agent HQ. Strong integration story with GitHub ecosystem. Not moving as fast as Claude Code or Cursor on raw agent capabilities, but the event-driven model is unique.
+
+### Worth Watching
+
+**OpenClaw.** 68K GitHub stars and massive momentum, but critical reliability and security issues (CVE-2026-25253, 6GB memory leaks, 20% malicious skills on ClawHub). Creator joining OpenAI suggests the project may professionalize. If they fix the reliability problems, the breadth is unmatched. If they don't, it's a cautionary tale about vibe coding at scale.
+
+**NanoClaw.** The security-first response to OpenClaw. 3,900 lines of auditable code. Container isolation by default. But most capabilities come from the Claude SDK, not NanoClaw itself — it's more of a thin orchestration layer than an independent agent.
 
 ### Falling Behind
 
@@ -334,11 +402,17 @@ There's no single winner. The right tool depends on what you're doing.
 
 **If you want to go from idea to deployed app in one conversation:** Replit Agent. The full platform handles code, hosting, database, auth, and deployment. Best for prototyping and MVPs. Be aware of platform lock-in.
 
+**If you want a personal AI assistant across messaging platforms:** OpenClaw (broadest, least reliable) or NanoClaw (narrower, most secure). Neither is a coding agent — they're life orchestration tools that can code as one skill among many.
+
+**If you're building agents that need real persistent memory:** Letta. The only tool with HAVE-level memory — tiered, self-editing, semantic search, database-backed. Best as infrastructure for your own agents, not as a standalone coding tool.
+
 ### The Uncomfortable Truth
 
-No tool scores above 19/30. The highest-scoring tool in the market (Warp) covers 63% of what a fully autonomous agent needs — and it gets there partly by being a fundamentally different kind of tool (a terminal, not an editor). The remaining 37% — desktop control, audio/video, proper memory, daemon mode — is either primitive or nonexistent across the entire industry.
+No tool scores above 19/30. The highest-scoring tools (Warp and OpenClaw, tied at 19/30) get there by being fundamentally different kinds of tools — a terminal and a personal assistant, not coding agents. The highest-scoring coding agent (Devin) covers 60%. Among coding agents, the remaining 40% — desktop control, interactive PTY, audio/video, proper memory, daemon mode — is either primitive or nonexistent.
 
-The "Less Is More" framework identifies 10 components. The market has built 1 completely (terminal), is converging on 3 more (browser, sandbox, multi-agent), and has barely started on the remaining 6.
+The agent platforms (OpenClaw, Letta) have real implementations of the components coding agents are missing — memory, daemon, desktop control. But those implementations come with serious reliability and security caveats. The lesson isn't "use OpenClaw for coding" — it's "the components can be built, someone just needs to build them well."
+
+The "Less Is More" framework identifies 10 components. The market has built 1 completely (terminal), is converging on 4 more (browser, sandbox, multi-agent, daemon), and has barely started on the remaining 5.
 
 We're early.
 
@@ -350,23 +424,99 @@ How many tools cover each component at PARTIAL or above:
 
 | Component | Tools at PARTIAL+ | % of Market | Assessment |
 |-----------|------------------|-------------|------------|
-| Terminal + structured tools | 14/14 | 100% | **Solved** |
-| Web browser | 9/14 | 64% | Converging |
-| Sandboxed execution | 9/14 | 64% | Converging |
-| Multi-agent orchestration | 8/14 | 57% | Active investment |
-| Stateful agent daemon | 5/14 | 36% | **Underserved** |
-| Credential management | 5/14 | 36% | **Underserved** |
-| Memory with teeth | 3/14 | 21% | **Underserved** |
-| Interactive PTY | 2/14 | 14% | **Nearly nobody building** |
-| Desktop vision + control | 0/14 | 0% | **Nobody building** |
-| Audio/video I/O | 0/14 | 0% | **Nobody building** |
+| Terminal + structured tools | 17/17 | 100% | **Solved** |
+| Sandboxed execution | 11/17 | 65% | Converging |
+| Web browser | 11/17 | 65% | Converging |
+| Multi-agent orchestration | 10/17 | 59% | Active investment |
+| Stateful agent daemon | 7/17 | 41% | Emerging |
+| Credential management | 5/17 | 29% | **Underserved** |
+| Memory with teeth | 5/17 | 29% | **Underserved** |
+| Interactive PTY | 3/17 | 18% | **Nearly nobody building** |
+| Desktop vision + control | 1/17 | 6% | **Nearly nobody building** |
+| Audio/video I/O | 1/17 | 6% | **Nearly nobody building** |
 
 ### The Three Tiers of Market Maturity
 
 **Tier 1 — Solved:** Terminal + structured tools. Done. Everyone has it.
 
-**Tier 2 — Active competition:** Browser, sandbox, multi-agent. These are the current battleground. Tools are differentiating here. Daemon and credentials are moving from Tier 3 into this zone with Replit and Warp pushing the numbers up.
+**Tier 2 — Active competition:** Browser, sandbox, multi-agent, daemon. These are the current battleground. Tools are differentiating here. The agent platforms (Letta, OpenClaw) are pushing daemon and memory numbers up, proving the components can be built even if coding agents haven't prioritized them yet.
 
-**Tier 3 — Wide open:** Memory, desktop, PTY, audio/video. Four out of ten components are either deeply underserved or completely absent from the market. This is where the next wave of differentiation will come from. Warp's PTY HAVE is the exception that proves the rule — it took building an entirely new kind of terminal to crack one of these components.
+**Tier 3 — Wide open:** Credentials, memory, desktop, PTY, audio/video. Five out of ten components are either deeply underserved or nearly absent from the market. This is where the next wave of differentiation will come from. Letta's Memory HAVE and Warp's PTY HAVE are the exceptions that prove the rule — it took building entirely different kinds of tools to crack those components.
 
-The tool that figures out memory with teeth first will leapfrog everyone else. Memory is the force multiplier — it makes every other component more valuable. The market knows this (Devin and Claude Code are both investing here), but nobody has cracked it yet.
+The first coding agent that integrates Letta-quality memory and Warp-quality PTY into a Claude Code-quality terminal experience will leapfrog everyone. The components have been proven individually. Nobody has assembled them yet.
+
+---
+
+## Component Ecosystem — Best-in-Class Specialists
+
+The tools on the scorecard above are complete agents — you can use them to do work. But beneath them is an ecosystem of specialized tools, frameworks, and infrastructure that have the best implementations of specific components. These aren't competitors to Claude Code or Devin — they're building blocks that any agent could integrate.
+
+### Memory
+
+| Tool | Stars | What It Does | Why It Matters |
+|------|-------|-------------|----------------|
+| **Mem0** | 41K | Hybrid vector + key-value + graph memory layer. 66.9% LOCOMO benchmark (vs. OpenAI's 52.9%). | Universal memory plugin — plugs into any agent framework. AWS Agent SDK's exclusive memory provider. |
+| **memU** (NevaMind) | Growing | Turns flat conversation history into hierarchical knowledge graphs. 92% LOCOMO accuracy. | Highest reported benchmark score for conversational recall. |
+
+### Desktop Vision + Control
+
+| Tool | Stars | What It Does | Why It Matters |
+|------|-------|-------------|----------------|
+| **UFO3** (Microsoft Research) | 8K | Windows-native agent using UI Automation APIs + OmniParser vision. Galaxy adds multi-device orchestration. | Best open-source desktop automation. But 30% benchmark success rate — research-grade, not production. |
+| **Agent S3** (Simular AI) | 3K | Code + GUI hybrid that reached 69.9% on OSWorld (human baseline: 72%). | Closest to human performance on desktop tasks. Open source. |
+| **UI-TARS** (ByteDance) | 12K | Offline GUI agent model (7B/72B params). Open weights. Beats GPT-4o on GUI benchmarks. | Runs locally with no API dependency. The model you'd fine-tune for your specific apps. |
+
+### Audio/Video I/O
+
+| Tool | Stars | What It Does | Why It Matters |
+|------|-------|-------------|----------------|
+| **LiveKit Agents** | 5K | Real-time voice + video over WebRTC with voice activity detection and turn-taking. | Production-grade. The infrastructure if you want an agent that can hear and speak in real time. |
+| **Pipecat** (Daily.co) | 8K | Python framework for STT → LLM → TTS pipelines. Simplifies building voice agents. | The simplest path to a voice-enabled agent. |
+| **TEN Framework** | 4K | Conversational voice AI with Gemini 2.0 Live, OpenAI Realtime, and RTC integration. | Multi-model real-time voice with WASM support. |
+
+### Interactive PTY
+
+| Tool | Stars | What It Does | Why It Matters |
+|------|-------|-------------|----------------|
+| **PiloTY** | Small | MCP server giving AI agents persistent interactive terminals. State persists across tool calls. | Solves THE PTY problem as a plug-in. Persistent REPL, debugger, SSH across calls. |
+
+### Sandboxed Execution
+
+| Tool | Stars | What It Does | Why It Matters |
+|------|-------|-------------|----------------|
+| **E2B** | Well-funded | Firecracker microVMs. 150ms startup. No cold starts. 24-hour sessions. | The sandbox infrastructure standard. Used by Letta, smolagents, and dozens of agent frameworks. |
+| **Daytona** | 21K | 200ms sandbox startup with stateful persistence. SDKs for Python/TS/Ruby. | Longer-lived sandboxes than E2B. Letta Code uses Daytona for its execution environment. |
+
+### Credential Management
+
+| Tool | Stars | What It Does | Why It Matters |
+|------|-------|-------------|----------------|
+| **Composio** | Growing | Managed OAuth for 250+ apps. Handles auth handshakes on secure infrastructure, returns reference IDs. | The only tool that makes credential management its core product. Fills the gap every agent has. |
+| **n8n** | Massive | Workflow automation with built-in credential vault for 400+ connectors. Event-driven webhooks and schedules. | Strong on both credentials AND daemon mode. The enterprise answer to agent authentication. |
+
+### Multi-Agent Orchestration
+
+| Tool | Stars | What It Does | Why It Matters |
+|------|-------|-------------|----------------|
+| **AutoGen / Magentic-One** (Microsoft) | 40K | 4 orchestration patterns (round-robin, LLM-selected, graph-based, swarm) + distributed runtime. 5 specialized agents. | Most complete orchestration framework. 38% GAIA benchmark. Research-grade but architecturally strong. |
+| **CrewAI** | 25K | Role-based agent teams with sequential, hierarchical, and consensual processes. | Most intuitive multi-agent abstraction. Strong enterprise adoption. |
+| **LangGraph** (LangChain) | Massive | Graph-based agent orchestration with persistent checkpointing. | De facto standard for stateful agent workflows. |
+
+### Browser Automation
+
+| Tool | Stars | What It Does | Why It Matters |
+|------|-------|-------------|----------------|
+| **Browser-Use** | 78K | Open-source browser automation for AI agents. 89.1% WebVoyager benchmark. | Highest benchmark score. Fortune 500 adoption. The browser tool you'd plug into any agent. |
+| **Skyvern** | 20K | Playwright + LLM + computer vision. Works on sites it's never seen before. | Self-healing browser automation that adapts to layout changes. |
+
+### The "Claw" Category — Personal AI Assistants
+
+Beyond the tools scored above (OpenClaw, NanoClaw), several other personal AI assistant frameworks exist:
+
+| Tool | What It Does |
+|------|-------------|
+| **ZeroClaw** | Lightweight Rust runtime (16MB binary, <5MB RAM). Native daemon mode with built-in hybrid memory. Security-first. |
+| **elizaOS** | TypeScript framework for autonomous agents on Discord, Telegram, Farcaster. Web3 heritage but expanding. |
+| **Screenpipe** | 24/7 screen + audio recording with OCR. Persistent searchable memory of everything on your computer. MCP server for AI assistants. Unique daemon + memory combination. |
+
+Andrej Karpathy coined the category: **"Chat → Code → Claw."** Claws are persistent AI agents that orchestrate your digital life — a layer above coding agents. The pattern is clear: coding agents handle your codebase, Claws handle everything else.

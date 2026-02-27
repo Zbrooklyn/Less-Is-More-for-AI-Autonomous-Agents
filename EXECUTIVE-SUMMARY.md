@@ -46,19 +46,19 @@ Everything a fully autonomous AI agent needs fits into exactly 10 components:
 
 ## What the Market Looks Like
 
-The [Agent Framework Scorecard](components/12-agent-framework-scorecard.md) scores 14 major AI coding tools against all 10 components. Key findings:
+The [Agent Framework Scorecard](components/12-agent-framework-scorecard.md) scores 17 tools — 14 coding agents and 3 agent platforms — against all 10 components. Key findings:
 
-**No tool scores above 63%.** The highest-scoring tool (Warp) covers 19 out of 30 possible points — and gets there partly by being a fundamentally different kind of tool (an AI-native terminal with real interactive PTY). Devin is close at 18/30. The best open-source tools (Claude Code, OpenHands, Cline) score 14/30. The market is early.
+**No tool scores above 63%.** The highest-scoring tools (Warp and OpenClaw, tied at 19/30) get there by being fundamentally different — a terminal and a personal assistant, not coding agents. The highest-scoring coding agent (Devin) covers 60%. The best open-source coding tools (Claude Code, OpenHands, Cline) score 14/30. Agent platforms like Letta (17/30) have the best implementations of memory and daemon — the components coding agents are missing. The market is early.
 
 **Three tiers of market maturity:**
 
 | Tier | Components | Market Status |
 |------|-----------|---------------|
 | **Solved** | Terminal + structured tools | Every tool has it. Table stakes. |
-| **Active battleground** | Browser, sandbox, multi-agent, daemon, credentials | Tools are differentiating here. 36-64% coverage. |
-| **Wide open** | Memory, desktop, PTY, audio/video | 4 of 10 components are deeply underserved or absent. 0-21% coverage. |
+| **Active battleground** | Browser, sandbox, multi-agent, daemon | Tools are differentiating here. 41-65% coverage. |
+| **Wide open** | Credentials, memory, desktop, PTY, audio/video | 5 of 10 components are deeply underserved or absent. 6-29% coverage. |
 
-**The tool that cracks memory with teeth first will leapfrog everyone else.** Memory is the force multiplier — it makes every other component more valuable.
+**The first coding agent to integrate Letta-quality memory and Warp-quality PTY into a Claude Code-quality terminal experience will leapfrog everyone.** The components have been proven individually. Nobody has assembled them yet.
 
 ---
 
@@ -86,7 +86,7 @@ Weeks 23-30: Multi-agent orchestration (build last)
 - **Memory is the hardest problem**: Tools, browser, and desktop control are solvable engineering. Memory touches how models fundamentally work. It's also the foundation the daemon and multi-agent both depend on.
 - **Daemon mode is the biggest UX jump**: Shifting from request-response to always-on is a category change, not an incremental improvement.
 - **Multi-agent is the scaling layer**: One agent with all 9 components can do anything one person can. Multi-agent orchestration is how you go from one person to a team.
-- **The market is early**: 4 of 10 components have less than 25% coverage across all 14 major tools. The next wave of differentiation will come from the underserved components, not from improving terminal or browser.
+- **The market is early**: 5 of 10 components have less than 30% coverage across all 17 tools surveyed. The next wave of differentiation will come from the underserved components, not from improving terminal or browser.
 
 ---
 
