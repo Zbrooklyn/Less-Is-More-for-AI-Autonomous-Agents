@@ -153,6 +153,15 @@ def capture(
         correction_id = correction["id"]
         occurrence_count = 1
 
+        # Also add to memory_entries so it's searchable via query/inject
+        store.add(
+            content=f"[Correction] Don't: {what_was_wrong}. Do: {what_is_right}. (User said: {user_message[:100]})",
+            entry_type="correction",
+            scope="global",
+            source="correction_capture",
+            confidence=0.7,
+        )
+
     # Auto-promote if threshold reached
     promoted = False
     promoted_rule_id = None
