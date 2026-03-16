@@ -394,26 +394,28 @@ def test_daemon_full_loop():
 # 10. Browser — Real HTTP (DuckDuckGo)
 # ============================================================
 
-@test("Browser: real DuckDuckGo search")
+@test("Browser: real web search (DuckDuckGo + Bing fallback)")
 def test_browser_real_search():
     try:
         import httpx
     except ImportError:
         return "SKIP"
 
-    from src.browser.sync_api import search
+    import asyncio
+    from src.browser.engine import BrowserEngine
+
+    async def _search():
+        async with BrowserEngine(use_playwright=False) as engine:
+            return await engine.search("sqlite database tutorial", max_results=3)
 
     try:
-        results = search("python programming language", max_results=3)
-        if len(results) == 0:
-            # DuckDuckGo may block automated requests — not a code bug
-            print("    (DuckDuckGo returned 0 results — may be rate-limited)")
-            return "SKIP"
+        results = asyncio.run(_search())
+        assert len(results) >= 1, f"Should get at least 1 result (DDG + Bing fallback), got {len(results)}"
         assert results[0].title, "Result should have a title"
         assert results[0].url.startswith("http"), f"URL should be valid: {results[0].url}"
     except Exception as e:
-        if "timeout" in str(e).lower() or "connect" in str(e).lower() or "rate" in str(e).lower():
-            return "SKIP"
+        if "timeout" in str(e).lower() or "connect" in str(e).lower():
+            return "SKIP"  # No network
         raise
 
 

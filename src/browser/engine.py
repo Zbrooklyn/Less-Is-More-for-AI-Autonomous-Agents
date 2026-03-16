@@ -206,12 +206,24 @@ class BrowserEngine:
         return results
 
     async def _search_httpx(self, query: str, *, max_results: int) -> list[SearchResult]:
+        """Search via DuckDuckGo, fall back to Bing if DDG returns no results."""
         from bs4 import BeautifulSoup
         encoded = urllib.parse.quote_plus(query)
+
+        # Try DuckDuckGo first
         url = f"https://html.duckduckgo.com/html/?q={encoded}"
         resp = await self._http_client.get(url)
         resp.raise_for_status()
-        return self._parse_ddg_html(resp.text, max_results)
+        results = self._parse_ddg_html(resp.text, max_results)
+
+        if results:
+            return results
+
+        # Fallback: Bing
+        bing_url = f"https://www.bing.com/search?q={encoded}"
+        resp = await self._http_client.get(bing_url)
+        resp.raise_for_status()
+        return self._parse_bing_html(resp.text, max_results)
 
     def _parse_ddg_html(self, html: str, max_results: int) -> list[SearchResult]:
         from bs4 import BeautifulSoup
@@ -228,6 +240,23 @@ class BrowserEngine:
             url = self._extract_ddg_url(href)
             if title and url:
                 results.append(SearchResult(title=title, url=url, snippet=snippet))
+        return results
+
+    def _parse_bing_html(self, html: str, max_results: int) -> list[SearchResult]:
+        """Parse Bing search results HTML."""
+        from bs4 import BeautifulSoup
+        soup = BeautifulSoup(html, "html.parser")
+        results: list[SearchResult] = []
+        for item in soup.select("li.b_algo")[:max_results]:
+            a_tag = item.select_one("h2 a")
+            snippet_tag = item.select_one(".b_caption p")
+            if not a_tag:
+                continue
+            title = a_tag.get_text(strip=True)
+            href = a_tag.get("href", "")
+            snippet = snippet_tag.get_text(strip=True) if snippet_tag else ""
+            if title and href.startswith("http"):
+                results.append(SearchResult(title=title, url=href, snippet=snippet))
         return results
 
     @staticmethod
