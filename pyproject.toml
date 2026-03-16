@@ -1,0 +1,60 @@
+[project]
+name = "autonomous-ai-agent"
+version = "1.0.0"
+description = "10-component autonomous AI agent — memory, daemon, and beyond"
+requires-python = ">=3.12"
+dependencies = [
+    "sqlite-vec",
+    "keyring",
+]
+
+[project.scripts]
+memory-cli = "src.memory.cli:main"
+cred-cli = "src.credentials.cli:main"
+daemon-service = "src.daemon.service:main"
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "pytest-asyncio",
+    "ruff",
+]
+memory = [
+    "sentence-transformers",
+    "numpy",
+]
+daemon = [
+    "watchdog",
+]
+browser = [
+    "httpx",
+    "beautifulsoup4",
+    "playwright",
+]
+vision = [
+    "mss",
+    "pyautogui",
+    "numpy",
+    "Pillow",
+]
+audio = [
+    "sounddevice",
+    "pyttsx3",
+    "numpy",
+]
+all = [
+    "sentence-transformers",
+    "numpy",
+    "watchdog",
+    "httpx",
+    "beautifulsoup4",
+    "playwright",
+    "mss",
+    "pyautogui",
+    "Pillow",
+    "sounddevice",
+    "pyttsx3",
+]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"

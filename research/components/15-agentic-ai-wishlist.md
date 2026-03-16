@@ -235,6 +235,22 @@ None of these are components in the structural sense. They're cross-cutting conc
 
 ---
 
+## 16. Observability and Tracing
+
+**The problem:** When an agent fails on step 14 of a 20-step task, there's no way to understand what happened. No trace of the reasoning chain, no log of which tools returned what, no way to replay the decision points. Debugging an agent failure today means reading chat history and guessing.
+
+**What it would look like:**
+- Structured trace logs: every tool call, every reasoning step, every decision point recorded with timestamps and context
+- Replay capability: "Show me exactly what the agent saw, thought, and did at step 14"
+- Anomaly detection: "The agent spent 8 minutes on a step that usually takes 30 seconds — something went wrong here"
+- Cross-agent tracing: in multi-agent orchestration, trace a task from supervisor → worker → tool call → result → back to supervisor
+- Dashboard: real-time visibility into what the agent is doing, has done, and plans to do next
+- Post-mortem tooling: after a failure, automatically generate a diagnostic report with the full trace, relevant context, and likely failure point
+
+**Why it's not in the 10 components:** The components define what the agent does. This is about being able to see and understand what it did — the debugging and monitoring layer that makes the system trustworthy in production.
+
+---
+
 ## Summary
 
 | # | Wishlist Item | Category | Difficulty |
@@ -254,10 +270,11 @@ None of these are components in the structural sense. They're cross-cutting conc
 | 13 | Graceful failure and recovery patterns | Resilience | Medium |
 | 14 | Notification preferences and communication style | Communication | Low |
 | 15 | Energy and resource efficiency | Operational | Medium |
+| 16 | Observability and tracing | Infrastructure | Medium |
 
 ### Why These Aren't Components
 
-The 10 components answer **"what can the agent do?"** — they define capabilities. These 15 items answer different questions:
+The 10 components answer **"what can the agent do?"** — they define capabilities. These 16 items answer different questions:
 
 - **How efficiently does it do it?** (cost, resources, context management)
 - **How well does it communicate?** (progress, disambiguation, explainability, notifications)
@@ -265,5 +282,6 @@ The 10 components answer **"what can the agent do?"** — they define capabiliti
 - **How does it improve over time?** (tool creation, workflow recording)
 - **What constraints does it respect?** (licenses, regulations, budgets)
 - **How portable is it?** (cross-machine, degraded mode)
+- **How debuggable is it?** (observability, tracing)
 
 These are the qualities that separate a capable agent from a great one. The 10 components get you to functional. The wishlist gets you to delightful.

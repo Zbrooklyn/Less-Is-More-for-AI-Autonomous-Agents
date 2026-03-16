@@ -87,6 +87,7 @@ Weeks 23-30: Multi-agent orchestration (build last)
 - **Daemon mode is the biggest UX jump**: Shifting from request-response to always-on is a category change, not an incremental improvement.
 - **Multi-agent is the scaling layer**: One agent with all 9 components can do anything one person can. Multi-agent orchestration is how you go from one person to a team.
 - **The market is early**: 5 of 10 components have less than 30% coverage across all 17 tools surveyed. The next wave of differentiation will come from the underserved components, not from improving terminal or browser.
+- **What this framework can't fix**: The #1 cause of real-world agent failures is the model reasoning wrong — not missing tools. No amount of tooling solves a model that makes bad decisions. This framework covers the 10 things you *can* control. The thing you can't control is the model itself.
 
 ---
 

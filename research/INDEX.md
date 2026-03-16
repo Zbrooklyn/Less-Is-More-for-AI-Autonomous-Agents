@@ -93,4 +93,4 @@ Each document covers: definition, purpose, current status, key insight, what exi
 | 12 | [Agent Framework Scorecard](components/12-agent-framework-scorecard.md) | 17 autonomous AI agents scored on all 10 components — rankings, per-tool analysis, market gaps, best-in-class picks, component ecosystem |
 | 13 | [Deep Spec — Memory With Teeth](components/13-deep-spec-highest-impact-component.md) | Full technical spec: architecture, data models, API, tech stack, 7 phases (37 days), testing, risks |
 | 14 | [Personal Agent Stack](components/14-personal-agent-stack.md) | Current setup assessment, per-component scoring, gap analysis, quick wins, priority ranking |
-| 15 | [Agentic AI Wishlist](components/15-agentic-ai-wishlist.md) | 15 cross-cutting capabilities beyond the 10 components — cost, context management, failure recovery, portability |
+| 15 | [Agentic AI Wishlist](components/15-agentic-ai-wishlist.md) | 16 cross-cutting capabilities beyond the 10 components — cost, context management, failure recovery, portability, observability |
